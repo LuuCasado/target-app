@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../../logo.svg";
 import "../../../App.css";
 
-const Base = () => {
+const Base = ({ user }) => {
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +10,7 @@ const Base = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <p>Welcome {user?.name}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
