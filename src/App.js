@@ -5,6 +5,7 @@ import reducer from "./store/reducers";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./index.css";
 
 const store = createStore(reducer);
 
