@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "./pages/Home";
-import routes from "./constants/routes";
-import reducer from "./store/reducers";
+import Home from "pages/Home";
+import routes from "constants/routes";
+import reducer from "store/reducers";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

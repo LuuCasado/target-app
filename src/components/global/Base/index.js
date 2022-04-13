@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../logo.svg";
+import logo from "assets/icons/logo.svg";
 import useStyles from "./styles.js";
 
 const Base = ({ user }) => {

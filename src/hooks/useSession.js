@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { loginSuccessful, logout } from "../store/reducers/authSlice";
+import { loginSuccessful, logout } from "store/reducers/authSlice";
 
 const useSession = () => {
   const dispatch = useDispatch();
