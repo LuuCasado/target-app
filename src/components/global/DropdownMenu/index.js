@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import cn from "classnames";
 import useStyles from "./styles";
 
-const DropdownMenu = ({ className }) => {
+const DropdownMenu = ({
+  className,
+  value,
+  onChange,
+  options,
+  title,
+  error,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const classes = useStyles();
 
   return (
     <div className={cn(classes.dropdownMenu, className)}>
       <button onClick={() => setIsOpen(!isOpen)} className={classes.dropbtn}>
-        SELECT YOUR GENDER
+        {value ? value : title}
       </button>
       <div
-        id="myDropdown"
         className={cn(classes.content, { [classes.isContentVisible]: isOpen })}
       >
-        <div>
-          <span>MALE</span>
-        </div>
-        <div>
-          <span>FEMALE</span>
-        </div>
-        <div>
-          <span>PREFER NOT TO ANSWER</span>
-        </div>
+        {options.map((item) => (
+          <div
+            key={item}
+            onClick={() => {
+              setIsOpen(false);
+              onChange(item);
+            }}
+          >
+            <span>{item}</span>
+          </div>
+        ))}
       </div>
+      {error ? <p className={classes.error}>{error}</p> : null}
     </div>
   );
 };

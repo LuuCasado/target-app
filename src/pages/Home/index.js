@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
+
+import SamplePhone from "components/global/SamplePhone/index.js";
 import useSession from "hooks/useSession";
-import useStyles from "../SignIn/styles.js";
 
 const Home = () => {
-  const classes = useStyles();
-  const { handleLogin, handleLogout, user } = useSession();
+  const { user } = useSession();
 
   useEffect(() => {
-    handleLogin({ name: "lu" });
+    console.log(user);
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      <SamplePhone />
+    </div>
+  );
 };
 
 export default Home;

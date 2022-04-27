@@ -10,6 +10,14 @@ const useStyles = createUseStyles({
     boxSizing: "border-box",
     letterSpacing: "1.5px",
     fontSize: pxToRem(10),
+    marginTop: 5,
+  },
+  error: {
+    marginTop: 5,
+    margin: 0,
+    color: "red",
+    letterSpacing: "1.5px",
+    fontSize: pxToRem(10),
   },
 });
 
