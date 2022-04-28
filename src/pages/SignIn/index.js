@@ -1,4 +1,5 @@
 import React from "react";
+
 import smilies from "assets/icons/smilies.svg";
 import SignInForm from "components/auth/SignInForm/index.js";
 import useStyles from "./styles.js";

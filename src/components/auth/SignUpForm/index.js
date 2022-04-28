@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import cn from "classnames";
 
 import { genders } from "constants/constants";
-
 import {
   validateEmail,
   isEmpty,
@@ -13,10 +12,13 @@ import {
 import Input from "components/global/Input";
 import Button from "components/global/Button";
 import DropdownMenu from "components/global/DropdownMenu";
-
 import useStyles from "./styles";
 
-const SignUpForm = ({ className, handleSignUp, externalErrors }) => {
+const SignUpForm = ({
+  className,
+  handleSignUp,
+  externalErrors: [externalError],
+}) => {
   const classes = useStyles();
   const [values, setValues] = useState({
     name: "",
@@ -52,7 +54,7 @@ const SignUpForm = ({ className, handleSignUp, externalErrors }) => {
     };
 
     setErrors(errors);
-    if (Object.values(errors).some((elem) => elem !== "")) return;
+    if (Object.values(errors).some((elem) => elem)) return;
 
     handleSignUp(values);
   };
@@ -122,14 +124,14 @@ const SignUpForm = ({ className, handleSignUp, externalErrors }) => {
           error={errors.gender}
         />
       </div>
-      {externalErrors.length ? (
-        <p className={classes.error}>Oops!... {externalErrors[0]}</p>
-      ) : null}
+      {externalError && (
+        <p className={classes.error}>Oops!... {externalError}</p>
+      )}
       <Button className={classes.button} onClick={handleSubmit}>
         SIGN UP
       </Button>
       <hr className={classes.divider} />
-      <Link className={classes.link} to={"/sign-in"}>
+      <Link className={classes.link} to="/sign-in">
         SIGN IN
       </Link>
     </div>

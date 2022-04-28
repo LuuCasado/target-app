@@ -1,11 +1,12 @@
 import { createUseStyles } from "react-jss";
+
+import { colors } from "constants/colors";
 import { pxToRem } from "constants/helpers";
 
 const useStyles = createUseStyles({
   input: {
-    fontFamily: "Open Sans, sans-serif",
     minHeight: pxToRem(35),
-    border: "1px solid #060606",
+    border: `1px solid ${colors.darkGrey}`,
     padding: `${pxToRem(10)} ${pxToRem(5)}`,
     boxSizing: "border-box",
     letterSpacing: "1.5px",
@@ -15,7 +16,7 @@ const useStyles = createUseStyles({
   error: {
     marginTop: 5,
     margin: 0,
-    color: "red",
+    color: colors.red,
     letterSpacing: "1.5px",
     fontSize: pxToRem(10),
   },

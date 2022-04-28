@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import Input from "components/global/Input";
 import Button from "components/global/Button";
-import { Link } from "react-router-dom";
 import useStyles from "./styles";
 
 const SignInForm = () => {
@@ -18,7 +19,7 @@ const SignInForm = () => {
         <Input className={classes.input} name="password" type="password" />
       </div>
       <Button className={classes.button}>SIGN IN</Button>
-      <Link className={classes.link} to={"/sign-in"}>
+      <Link className={classes.link} to="/sign-in">
         Forgot your password?
       </Link>
     </div>

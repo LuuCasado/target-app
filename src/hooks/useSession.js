@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginSuccessful, logout } from "store/reducers/authSlice";
+import { localStorageKeys } from "constants/localStorageKeys";
 import routes from "constants/routes";
 import AuthService from "services/authService";
 
 const useSession = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.auth.user);
-  const isLoggedIn = Object.keys(user).length || localStorage.getItem("auth");
+  const isLoggedIn =
+    Object.keys(user).length || localStorage.getItem(localStorageKeys.auth);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const useSession = () => {
   const handleSignUp = async (values) => {
     try {
       const { data } = await AuthService.signUp(values);
-      localStorage.setItem("auth", JSON.stringify(data));
+      localStorage.setItem(localStorageKeys.auth, JSON.stringify(data));
       dispatch(loginSuccessful(data));
       navigate(routes.home);
     } catch ({
@@ -35,7 +37,7 @@ const useSession = () => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      const userData = JSON.parse(localStorage.getItem("auth"));
+      const userData = JSON.parse(localStorage.getItem(localStorageKeys.auth));
       dispatch(loginSuccessful(userData));
     }
   }, []);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import cn from "classnames";
+
 import useStyles from "./styles";
 
 const DropdownMenu = ({
@@ -16,7 +17,7 @@ const DropdownMenu = ({
   return (
     <div className={cn(classes.dropdownMenu, className)}>
       <button onClick={() => setIsOpen(!isOpen)} className={classes.dropbtn}>
-        {value ? value : title}
+        {value || title}
       </button>
       <div
         className={cn(classes.content, { [classes.isContentVisible]: isOpen })}
@@ -33,7 +34,7 @@ const DropdownMenu = ({
           </div>
         ))}
       </div>
-      {error ? <p className={classes.error}>{error}</p> : null}
+      {error && <p className={classes.error}>{error}</p>}
     </div>
   );
 };

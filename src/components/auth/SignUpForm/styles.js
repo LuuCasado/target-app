@@ -1,4 +1,6 @@
 import { createUseStyles } from "react-jss";
+
+import { colors } from "constants/colors";
 import { pxToRem } from "constants/helpers";
 
 const useStyles = createUseStyles({
@@ -32,16 +34,16 @@ const useStyles = createUseStyles({
     textAlign: "center",
   },
   link: {
-    color: "#000000",
+    color: colors.black,
     letterSpacing: "1.65px",
     fontSize: pxToRem(11),
   },
   divider: {
-    color: "#000000",
+    color: colors.black,
     width: pxToRem(121),
   },
   error: {
-    color: "red",
+    color: colors.red,
     margin: 0,
     fontSize: pxToRem(11),
     lineHeight: pxToRem(13),

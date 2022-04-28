@@ -1,4 +1,5 @@
 import React from "react";
+
 import menuIcon from "assets/icons/menu-icon.svg";
 import useStyles from "./styles";
 

@@ -1,5 +1,7 @@
 import { createUseStyles } from "react-jss";
+
 import { pxToRem } from "constants/helpers";
+import { colors } from "constants/colors";
 
 const useStyles = createUseStyles({
   container: {
@@ -22,7 +24,7 @@ const useStyles = createUseStyles({
     marginBottom: pxToRem(15),
   },
   link: {
-    color: "#000000",
+    color: colors.black,
     fontSize: pxToRem(11),
   },
 });

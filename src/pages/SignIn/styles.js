@@ -1,9 +1,5 @@
 import { createUseStyles } from "react-jss";
 
-const useStyles = createUseStyles({
-  smiliesIcon: {
-    //margin: "1.5rem",
-  },
-});
+const useStyles = createUseStyles({});
 
 export default useStyles;
