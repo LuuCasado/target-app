@@ -14,7 +14,7 @@ export const validateEmail = (email) =>
     ? errors.email
     : "";
 
-export const isEmpty = (str) => (!str ? errors.empty : "");
+export const validateEmpty = (str) => (!str ? errors.empty : "");
 
 export const validatePassword = (str) =>
   str.length < 8 ? errors.password : "";
