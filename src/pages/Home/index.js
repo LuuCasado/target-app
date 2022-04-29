@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
-import Base from "components/global/Base";
-import useSession from "hooks/useSession";
+import React from "react";
+
+import SamplePhone from "components/global/SamplePhone/index.js";
 
 const Home = () => {
-  const { handleLogin, handleLogout, user } = useSession();
-
-  useEffect(() => {
-    handleLogin({ name: "lu" });
-  }, []);
-
-  return <Base user={user} />;
+  return (
+    <div>
+      <SamplePhone />
+    </div>
+  );
 };
 
 export default Home;
