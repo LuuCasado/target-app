@@ -5,7 +5,7 @@ import cn from "classnames";
 import { genders } from "constants/constants";
 import {
   validateEmail,
-  isEmpty,
+  validateEmpty,
   validatePassword,
   validateConfirmPassword,
 } from "constants/validations";
@@ -44,13 +44,14 @@ const SignUpForm = ({
 
   const handleSubmit = () => {
     const errors = {
-      name: isEmpty(values.name),
-      email: isEmpty(values.email) || validateEmail(values.email),
-      password: isEmpty(values.password) || validatePassword(values.password),
+      name: validateEmpty(values.name),
+      email: validateEmpty(values.email) || validateEmail(values.email),
+      password:
+        validateEmpty(values.password) || validatePassword(values.password),
       confirmPassword:
-        isEmpty(values.confirmPassword) ||
+        validateEmpty(values.confirmPassword) ||
         validateConfirmPassword(values.password, values.confirmPassword),
-      gender: isEmpty(values.gender),
+      gender: validateEmpty(values.gender),
     };
 
     setErrors(errors);
