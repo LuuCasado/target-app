@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 
-import { genders } from "constants/constants";
 import {
   validateEmail,
   validateEmpty,
   validatePassword,
   validateConfirmPassword,
 } from "constants/validations";
+import { genders } from "constants/constants";
+import routes from "constants/routes";
 import Input from "components/global/Input";
 import Button from "components/global/Button";
 import DropdownMenu from "components/global/DropdownMenu";
@@ -132,7 +133,7 @@ const SignUpForm = ({
         SIGN UP
       </Button>
       <hr className={classes.divider} />
-      <Link className={classes.link} to="/sign-in">
+      <Link className={classes.link} to={routes.signIn}>
         SIGN IN
       </Link>
     </div>

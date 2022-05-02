@@ -12,6 +12,7 @@ const useStyles = createUseStyles({
     letterSpacing: "1.5px",
     fontSize: pxToRem(10),
     marginTop: 5,
+    textAlign: "center",
   },
   error: {
     marginTop: 5,
