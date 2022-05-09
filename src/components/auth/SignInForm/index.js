@@ -6,6 +6,7 @@ import {
   validateEmpty,
   validatePassword,
 } from "constants/validations";
+import { hasErrors } from "utils/helpers";
 import routes from "constants/routes";
 import Input from "components/global/Input";
 import Button from "components/global/Button";
@@ -30,7 +31,7 @@ const SignInForm = ({ handleLogin, externalErrors: [externalError] }) => {
     };
 
     setErrors(errors);
-    if (Object.values(errors).some((elem) => elem)) return;
+    if (hasErrors(errors)) return;
 
     handleLogin(values);
   };

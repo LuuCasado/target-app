@@ -8,6 +8,7 @@ import {
   validatePassword,
   validateConfirmPassword,
 } from "constants/validations";
+import { hasErrors } from "utils/helpers";
 import { genders } from "constants/constants";
 import routes from "constants/routes";
 import Input from "components/global/Input";
@@ -56,7 +57,7 @@ const SignUpForm = ({
     };
 
     setErrors(errors);
-    if (Object.values(errors).some((elem) => elem)) return;
+    if (hasErrors(errors)) return;
 
     handleSignUp(values);
   };

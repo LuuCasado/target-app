@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 
-import { pxToRem } from "constants/helpers";
+import { pxToRem } from "utils/helpers";
 
 const useStyles = createUseStyles({
   externalLinks: {
