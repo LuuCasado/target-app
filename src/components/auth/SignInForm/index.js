@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { validateEmail, validateEmpty } from "constants/validations";
+import {
+  validateEmail,
+  validateEmpty,
+  validatePassword,
+} from "constants/validations";
 import routes from "constants/routes";
 import Input from "components/global/Input";
 import Button from "components/global/Button";
@@ -21,7 +25,8 @@ const SignInForm = ({ handleLogin, externalErrors: [externalError] }) => {
   const handleSubmit = () => {
     const errors = {
       email: validateEmpty(values.email) || validateEmail(values.email),
-      password: validateEmpty(values.password),
+      password:
+        validateEmpty(values.password) || validatePassword(values.password),
     };
 
     setErrors(errors);

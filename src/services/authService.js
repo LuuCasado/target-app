@@ -9,24 +9,24 @@ const config = {
 };
 
 class AuthService {
-  static signUp(values) {
+  static signUp({ name: username, email, gender, password, confirmPassword }) {
     const data = {
       user: {
-        username: values.name,
-        email: values.email,
-        gender: values.gender.toLowerCase(),
-        password: values.password,
-        password_confirmation: values.confirmPassword,
+        username,
+        email,
+        gender: gender.toLowerCase(),
+        password,
+        password_confirmation: confirmPassword,
       },
     };
     return axios.post(`${base}${endpoints.signUp}`, data, config);
   }
 
-  static logIn(values) {
+  static logIn({ email, password }) {
     const data = {
       user: {
-        email: values.email,
-        password: values.password,
+        email,
+        password,
       },
     };
     return axios.post(`${base}${endpoints.signIn}`, data, config);

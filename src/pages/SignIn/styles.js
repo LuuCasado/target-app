@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
     },
     "& > p": {
       fontSize: pxToRem(14),
-      width: pxToRem(321),
+      maxWidth: pxToRem(321),
       marginTop: 0,
       lineHeight: pxToRem(23),
     },
