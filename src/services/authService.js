@@ -2,25 +2,34 @@ import axios from "axios";
 
 import { base, endpoints } from "constants/api";
 
-const headers = {
+const config = {
   headers: {
     "Content-Type": "application/json",
   },
 };
 
 class AuthService {
-  static signUp(values) {
+  static signUp({ name: username, email, gender, password, confirmPassword }) {
     const data = {
       user: {
-        username: values.name,
-        email: values.email,
-        gender: values.gender.toLowerCase(),
-        password: values.password,
-        password_confirmation: values.confirmPassword,
+        username,
+        email,
+        gender: gender.toLowerCase(),
+        password,
+        password_confirmation: confirmPassword,
       },
     };
+    return axios.post(`${base}${endpoints.signUp}`, data, config);
+  }
 
-    return axios.post(`${base}${endpoints.users}`, data, headers);
+  static logIn({ email, password }) {
+    const data = {
+      user: {
+        email,
+        password,
+      },
+    };
+    return axios.post(`${base}${endpoints.signIn}`, data, config);
   }
 }
 

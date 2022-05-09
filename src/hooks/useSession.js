@@ -13,9 +13,23 @@ const useSession = () => {
   const isLoggedIn =
     Object.keys(user).length || localStorage.getItem(localStorageKeys.auth);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  const handleLogin = (user) => dispatch(loginSuccessful(user));
+
+  const handleLogin = async (values) => {
+    try {
+      const { data } = await AuthService.logIn(values);
+      localStorage.setItem(localStorageKeys.auth, JSON.stringify(data));
+      dispatch(loginSuccessful(data));
+      navigate(routes.home);
+    } catch ({
+      response: {
+        data: { errors },
+      },
+    }) {
+      setErrors(errors);
+    }
+  };
+
   const handleLogout = () => dispatch(logout());
 
   const handleSignUp = async (values) => {
