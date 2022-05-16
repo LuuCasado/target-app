@@ -5,6 +5,7 @@ import useStyles from "./styles";
 
 const Header = () => {
   const classes = useStyles();
+
   return (
     <div>
       <img src={menuIcon} className={classes.menuIcon} alt="menuIcon" />

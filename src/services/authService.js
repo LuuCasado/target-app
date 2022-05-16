@@ -31,6 +31,13 @@ class AuthService {
     };
     return axios.post(`${base}${endpoints.signIn}`, data, config);
   }
+
+  static logOut({ data, headers }) {
+    return axios.delete(`${base}${endpoints.signOut}`, {
+      data: {},
+      headers,
+    });
+  }
 }
 
 export default AuthService;
