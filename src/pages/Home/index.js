@@ -1,12 +1,21 @@
 import React from "react";
 
-import SamplePhone from "components/global/SamplePhone/index.js";
+import Map from "components/global/Map";
+import useStyles from "./styles";
 
 const Home = () => {
+  const classes = useStyles();
   return (
-    <div>
-      <SamplePhone />
-    </div>
+    <>
+      <div className={classes.container}>
+        <div>
+          <p>TARGET APP</p>
+        </div>
+        <div className={classes.rightColumn}>
+          <Map />
+        </div>
+      </div>
+    </>
   );
 };
 

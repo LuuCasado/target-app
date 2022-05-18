@@ -5,7 +5,7 @@ import {
   validateEmail,
   validateEmpty,
   validatePassword,
-} from "constants/validations";
+} from "utils/validations";
 import { hasErrors } from "utils/helpers";
 import routes from "constants/routes";
 import Input from "components/global/Input";

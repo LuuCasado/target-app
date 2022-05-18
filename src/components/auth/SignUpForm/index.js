@@ -7,7 +7,7 @@ import {
   validateEmpty,
   validatePassword,
   validateConfirmPassword,
-} from "constants/validations";
+} from "utils/validations";
 import { hasErrors } from "utils/helpers";
 import { genders } from "constants/constants";
 import routes from "constants/routes";
