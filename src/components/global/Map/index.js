@@ -23,7 +23,7 @@ const Map = () => {
 
   return (
     <div>
-      <div ref={mapElement} className={classes.map}></div>
+      <div ref={mapElement} className={classes.map} />
     </div>
   );
 };
