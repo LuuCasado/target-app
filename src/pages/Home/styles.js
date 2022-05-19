@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
   container: {
     display: "flex",
     flexDirection: "row",
+    minHeight: `calc(100vh - ${pxToRem(70)})`,
 
     "& > div": {
       display: "flex",
@@ -34,8 +35,9 @@ const useStyles = createUseStyles({
     },
   },
 
-  map: {
-    width: "70%",
+  rightColumn: {
+    flex: 2,
+    maxWidth: "100%",
   },
 });
 

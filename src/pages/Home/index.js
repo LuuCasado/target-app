@@ -4,7 +4,7 @@ import { buttonStyles } from "constants/styleTypes";
 import useSession from "hooks/useSession";
 import Button from "components/global/Button";
 import smilies from "assets/icons/smilies.svg";
-import map from "assets/images/map.png";
+import Map from "components/global/Map";
 import useStyles from "./styles";
 
 const Home = () => {
@@ -31,8 +31,8 @@ const Home = () => {
           conversation if you’re not interested.
         </p>
       </div>
-      <div className={classes.map}>
-        <img src={map} alt="map  " />
+      <div className={classes.rightColumn}>
+        <Map />
       </div>
     </div>
   );
