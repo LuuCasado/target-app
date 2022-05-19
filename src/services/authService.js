@@ -32,10 +32,9 @@ class AuthService {
     return axios.post(`${base}${endpoints.signIn}`, data, config);
   }
 
-  static logOut({ data, headers }) {
+  static logOut() {
     return axios.delete(`${base}${endpoints.signOut}`, {
       data: {},
-      headers,
     });
   }
 }

@@ -12,6 +12,7 @@ const useSession = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.auth.user);
   const [isLoggedIn, setIsLoggedIn] = useState();
+  const [interceptor, setInterceptor] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,11 +20,18 @@ const useSession = () => {
     try {
       const { data, headers } = await AuthService.logIn(values);
 
+      const interceptor = axios.interceptors.request.use((config) => {
+        config.headers = { ...config.headers, ...headers };
+        return config;
+      });
+
+      setInterceptor(interceptor);
+
       localStorage.setItem(
         localStorageKeys.auth,
         JSON.stringify({ data, headers })
       );
-      dispatch(loginSuccessful({ data, headers }));
+      dispatch(loginSuccessful(data));
       navigate(routes.home);
     } catch ({
       response: {
@@ -37,6 +45,9 @@ const useSession = () => {
   const handleLogout = async () => {
     try {
       await AuthService.logOut(user);
+
+      axios.interceptors.request.eject(interceptor);
+
       localStorage.removeItem(localStorageKeys.auth);
       dispatch(logout());
     } catch (error) {
@@ -47,12 +58,19 @@ const useSession = () => {
   const handleSignUp = async (values) => {
     try {
       const { data, headers } = await AuthService.signUp(values);
-      console.log(data, headers);
+
+      const interceptor = axios.interceptors.request.use((config) => {
+        config.headers = { ...config.headers, ...headers };
+        return config;
+      });
+
+      setInterceptor(interceptor);
+
       localStorage.setItem(
         localStorageKeys.auth,
         JSON.stringify({ data, headers })
       );
-      dispatch(loginSuccessful({ data, headers }));
+      dispatch(loginSuccessful(data));
       navigate(routes.home);
     } catch ({
       response: {
@@ -68,10 +86,16 @@ const useSession = () => {
   useEffect(() => {
     const authRawData = localStorage.getItem(localStorageKeys.auth);
     if (authRawData) {
-      const userData = JSON.parse(authRawData);
+      const { data, headers } = JSON.parse(authRawData);
+
+      axios.interceptors.request.use((config) => {
+        config.headers = { ...config.headers, ...headers };
+        return config;
+      });
+
       setIsLoggedIn(true);
       if (!Object.values(user).length) {
-        dispatch(loginSuccessful(userData));
+        dispatch(loginSuccessful(data));
       }
     } else {
       setIsLoggedIn(false);
