@@ -21,11 +21,7 @@ const Map = () => {
     return () => map.remove();
   }, []);
 
-  return (
-    <div>
-      <div ref={mapElement} className={classes.map} />
-    </div>
-  );
+  return <div ref={mapElement} className={classes.map} />;
 };
 
 export default Map;

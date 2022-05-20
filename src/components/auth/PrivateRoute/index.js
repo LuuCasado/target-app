@@ -6,8 +6,7 @@ import useSession from "hooks/useSession";
 
 const PrivateRoute = ({ page }) => {
   const { isLoggedIn } = useSession();
-
-  if (!isLoggedIn) {
+  if (isLoggedIn === false) {
     return <Navigate to={routes.signIn} />;
   }
   return page;

@@ -3,8 +3,13 @@ import { createUseStyles } from "react-jss";
 import { pxToRem } from "utils/helpers";
 
 const useStyles = createUseStyles({
+  header: {
+    display: "flex",
+    alignItems: "center",
+    height: pxToRem(70),
+  },
   menuIcon: {
-    margin: pxToRem(22),
+    marginLeft: pxToRem(22),
   },
 });
 

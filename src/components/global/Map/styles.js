@@ -4,7 +4,8 @@ import { pxToRem } from "utils/helpers";
 
 const useStyles = createUseStyles({
   map: {
-    height: pxToRem(500),
+    height: "100%",
+    width: "100%",
   },
 });
 

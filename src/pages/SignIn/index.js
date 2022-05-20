@@ -14,7 +14,7 @@ const SignIn = () => {
   return (
     <div className={classes.container}>
       <div className={classes.leftColumn}>
-        <img src={smilies} className={classes.smiliesIcon} alt="smiliesIcon" />
+        <img src={smilies} alt="smiliesIcon" />
         <h1>TARGET MVD</h1>
         <h3>Find people near you & Connect</h3>
         <p>
