@@ -4,13 +4,16 @@ import tt from "@tomtom-international/web-sdk-maps";
 
 import useStyles from "./styles";
 
+const mapZoom = 13;
+const startingLatitude = 37.36765;
+const startingLongitude = -121.91599;
+
 const Map = () => {
   const classes = useStyles();
   const mapElement = useRef();
-  const [mapLongitude, setLongitude] = useState(-121.91599);
-  const [mapLatitude, setLatitude] = useState(37.36765);
+  const [mapLongitude, setLongitude] = useState(startingLongitude);
+  const [mapLatitude, setLatitude] = useState(startingLatitude);
   const [map, setMap] = useState({});
-  const [mapZoom] = useState(13);
 
   useEffect(() => {
     const map = tt.map({
