@@ -7,8 +7,9 @@ import useStyles from "./styles";
 const Map = () => {
   const classes = useStyles();
   const mapElement = useRef();
-  const [mapLongitude] = useState(-121.91599);
-  const [mapLatitude] = useState(37.36765);
+  const [mapLongitude, setLongitude] = useState(-121.91599);
+  const [mapLatitude, setLatitude] = useState(37.36765);
+  const [map, setMap] = useState({});
   const [mapZoom] = useState(13);
 
   useEffect(() => {
@@ -18,8 +19,24 @@ const Map = () => {
       center: [mapLongitude, mapLatitude],
       zoom: mapZoom,
     });
+
+    setMap(map);
+
+    navigator.geolocation?.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setLatitude(latitude);
+        setLongitude(longitude);
+      }
+    );
+
     return () => map.remove();
   }, []);
+
+  useEffect(() => {
+    if (map.setCenter) {
+      map.setCenter([parseFloat(mapLongitude), parseFloat(mapLatitude)]);
+    }
+  }, [map, mapLongitude, mapLatitude]);
 
   return <div ref={mapElement} className={classes.map} />;
 };
