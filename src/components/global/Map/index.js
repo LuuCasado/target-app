@@ -4,12 +4,16 @@ import tt from "@tomtom-international/web-sdk-maps";
 
 import useStyles from "./styles";
 
+const mapZoom = 13;
+const startingLatitude = 37.36765;
+const startingLongitude = -121.91599;
+
 const Map = () => {
   const classes = useStyles();
   const mapElement = useRef();
-  const [mapLongitude] = useState(-121.91599);
-  const [mapLatitude] = useState(37.36765);
-  const [mapZoom] = useState(13);
+  const [mapLongitude, setLongitude] = useState(startingLongitude);
+  const [mapLatitude, setLatitude] = useState(startingLatitude);
+  const [map, setMap] = useState({});
 
   useEffect(() => {
     const map = tt.map({
@@ -18,8 +22,24 @@ const Map = () => {
       center: [mapLongitude, mapLatitude],
       zoom: mapZoom,
     });
+
+    setMap(map);
+
+    navigator.geolocation?.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setLatitude(latitude);
+        setLongitude(longitude);
+      }
+    );
+
     return () => map.remove();
   }, []);
+
+  useEffect(() => {
+    if (map.setCenter) {
+      map.setCenter([parseFloat(mapLongitude), parseFloat(mapLatitude)]);
+    }
+  }, [map, mapLongitude, mapLatitude]);
 
   return <div ref={mapElement} className={classes.map} />;
 };
