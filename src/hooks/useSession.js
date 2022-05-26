@@ -102,6 +102,10 @@ const useSession = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    window.dispatchEvent(new Event("resize"));
+  }, [isLoggedIn]);
+
   return { user, errors, isLoggedIn, handleLogin, handleLogout, handleSignUp };
 };
 

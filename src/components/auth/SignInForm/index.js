@@ -7,7 +7,6 @@ import {
   validatePassword,
 } from "utils/validations";
 import { hasErrors } from "utils/helpers";
-import { buttonStyles } from "constants/styleTypes";
 import routes from "constants/routes";
 import Input from "components/global/Input";
 import Button from "components/global/Button";

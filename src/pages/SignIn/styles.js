@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
       alignItems: "center",
     },
   },
-  leftColumn: {
+  leftContainer: {
     paddingTop: pxToRem(100),
     textAlign: "center",
 
@@ -22,6 +22,7 @@ const useStyles = createUseStyles({
       fontSize: pxToRem(20),
       lineHeight: pxToRem(23),
       letterSpacing: "3px",
+      marginBottom: pxToRem(40),
     },
     "& > h3": {
       fontSize: pxToRem(18),
@@ -35,7 +36,7 @@ const useStyles = createUseStyles({
       lineHeight: pxToRem(23),
     },
   },
-  rightColumn: {
+  rightContainer: {
     backgroundColor: colors.lightblue,
     paddingTop: pxToRem(50),
   },

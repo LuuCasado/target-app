@@ -1,10 +1,13 @@
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  map: {
-    height: "100%",
+  common: {
+    width: "50%",
+  },
+
+  authenticated: {
     width: "100%",
-    flex: 1,
+    minHeight: "100vh",
   },
 });
 
