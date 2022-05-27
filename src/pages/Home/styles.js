@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     },
   },
   rightContainer: {
-    flex: 2,
+    flex: 1,
   },
   leftContainer: {
     textAlign: "center",

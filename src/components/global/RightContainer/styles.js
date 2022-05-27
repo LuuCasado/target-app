@@ -6,7 +6,6 @@ const useStyles = createUseStyles({
   },
 
   authenticated: {
-    width: "100%",
     minHeight: "100vh",
   },
 });
