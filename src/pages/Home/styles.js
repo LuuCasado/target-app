@@ -5,8 +5,7 @@ import { pxToRem } from "utils/helpers";
 const useStyles = createUseStyles({
   container: {
     display: "flex",
-    flexDirection: "row",
-    minHeight: `calc(100vh - ${pxToRem(70)})`,
+    minHeight: "100vh",
 
     "& > div": {
       display: "flex",
@@ -14,11 +13,12 @@ const useStyles = createUseStyles({
       alignItems: "center",
     },
   },
-
-  leftColumn: {
-    width: "30%",
-    paddingTop: pxToRem(100),
+  rightContainer: {
+    flex: 1,
+  },
+  leftContainer: {
     textAlign: "center",
+    paddingTop: pxToRem(40),
 
     "& > h3": {
       fontSize: pxToRem(18),
@@ -33,11 +33,6 @@ const useStyles = createUseStyles({
       marginTop: 0,
       lineHeight: pxToRem(23),
     },
-  },
-
-  rightColumn: {
-    flex: 2,
-    maxWidth: "100%",
   },
 });
 

@@ -1,9 +1,11 @@
 import React from "react";
 
-import useSession from "hooks/useSession.js";
+import RightContainer from "components/global/RightContainer/index.js";
+import LeftContainer from "components/global/LeftContainer/index.js";
 import SignUpForm from "components/auth/SignUpForm/index.js";
 import SamplePhone from "components/global/SamplePhone/index.js";
 import ExternalLinks from "components/global/ExternalLinks/index.js";
+import useSession from "hooks/useSession.js";
 import useStyles from "./styles.js";
 
 const SignUp = () => {
@@ -12,18 +14,18 @@ const SignUp = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.leftColumn}>
-        <h3>SIGN UP</h3>
+      <LeftContainer className={classes.leftContainer}>
+        <h1>SIGN UP</h1>
         <SignUpForm
           className={classes.form}
           handleSignUp={handleSignUp}
           externalErrors={errors}
         />
-      </div>
-      <div className={classes.rightColumn}>
+      </LeftContainer>
+      <RightContainer className={classes.rightContainer}>
         <SamplePhone />
         <ExternalLinks />
-      </div>
+      </RightContainer>
     </div>
   );
 };

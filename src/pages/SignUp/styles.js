@@ -14,16 +14,19 @@ const useStyles = createUseStyles({
       alignItems: "center",
     },
   },
-  leftColumn: {
-    paddingTop: pxToRem(100),
 
-    "& > h3": {
+  leftContainer: {
+    paddingTop: pxToRem(100),
+    textAlign: "center",
+
+    "& > h1": {
       fontSize: pxToRem(20),
-      letterSpacing: "3px",
       lineHeight: pxToRem(23),
+      letterSpacing: "3px",
+      marginBottom: pxToRem(40),
     },
   },
-  rightColumn: {
+  rightContainer: {
     backgroundColor: colors.lightblue,
     paddingTop: pxToRem(50),
   },

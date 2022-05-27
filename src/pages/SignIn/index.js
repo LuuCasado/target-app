@@ -1,10 +1,12 @@
 import React from "react";
 
-import smilies from "assets/icons/smilies.svg";
+import RightContainer from "components/global/RightContainer/index.js";
+import LeftContainer from "components/global/LeftContainer/index.js";
 import SignInForm from "components/auth/SignInForm/index.js";
 import SamplePhone from "components/global/SamplePhone/index.js";
 import ExternalLinks from "components/global/ExternalLinks/index.js";
 import useSession from "hooks/useSession.js";
+import smilies from "assets/icons/smilies.svg";
 import useStyles from "./styles.js";
 
 const SignIn = () => {
@@ -13,7 +15,7 @@ const SignIn = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.leftColumn}>
+      <LeftContainer className={classes.leftContainer}>
         <img src={smilies} alt="smiliesIcon" />
         <h1>TARGET MVD</h1>
         <h3>Find people near you & Connect</h3>
@@ -27,11 +29,11 @@ const SignIn = () => {
           handleLogin={handleLogin}
           externalErrors={errors}
         />
-      </div>
-      <div className={classes.rightColumn}>
+      </LeftContainer>
+      <RightContainer className={classes.rightContainer}>
         <SamplePhone />
         <ExternalLinks />
-      </div>
+      </RightContainer>
     </div>
   );
 };
