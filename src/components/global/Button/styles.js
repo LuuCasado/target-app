@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
     letterSpacing: "1.8px",
     cursor: "pointer",
   },
-  menu: {
+  secondary: {
     border: "none",
     fontSize: pxToRem(14),
     lineHeight: pxToRem(16),

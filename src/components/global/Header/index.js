@@ -5,15 +5,15 @@ import { ReactComponent as MenuIcon } from "assets/icons/menu-icon.svg";
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
 import useStyles from "./styles";
 
-const Header = ({ className, toggleMenu, isMenuOpen }) => {
+const Header = ({ className, toggleSider, isSiderOpen }) => {
   const classes = useStyles();
 
   return (
     <div className={cn(classes.header, className)}>
-      {isMenuOpen ? (
-        <CloseIcon className={classes.icon} onClick={toggleMenu} />
+      {isSiderOpen ? (
+        <CloseIcon className={classes.icon} onClick={toggleSider} />
       ) : (
-        <MenuIcon className={classes.icon} onClick={toggleMenu} />
+        <MenuIcon className={classes.icon} onClick={toggleSider} />
       )}
     </div>
   );

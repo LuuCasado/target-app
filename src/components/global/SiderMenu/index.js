@@ -5,7 +5,7 @@ import { authenticatedMenu, unauthenticatedMenu } from "constants/constants";
 import Button from "components/global/Button";
 import useStyles from "./styles";
 
-const Menu = ({ isLoggedIn }) => {
+const SiderMenu = ({ isLoggedIn }) => {
   const classes = useStyles();
 
   const authActions = useMemo(
@@ -32,7 +32,7 @@ const Menu = ({ isLoggedIn }) => {
       {isLoggedIn
         ? Object.values(authenticatedMenu).map((item) => (
             <Button
-              styleType={buttonStyles.menu}
+              styleType={buttonStyles.secondary}
               key={item}
               onClick={authActions[item]}
             >
@@ -41,7 +41,7 @@ const Menu = ({ isLoggedIn }) => {
           ))
         : Object.values(unauthenticatedMenu).map((item) => (
             <Button
-              styleType={buttonStyles.menu}
+              styleType={buttonStyles.secondary}
               key={item}
               onClick={unauthActions[item]}
             >
@@ -52,4 +52,4 @@ const Menu = ({ isLoggedIn }) => {
   );
 };
 
-export default Menu;
+export default SiderMenu;
