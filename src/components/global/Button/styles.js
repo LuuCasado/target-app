@@ -29,6 +29,7 @@ const useStyles = createUseStyles({
     background: "transparent",
     color: colors.black,
     marginBottom: pxToRem(10),
+    cursor: "pointer",
   },
 });
 
