@@ -13,14 +13,6 @@ const useStyles = createUseStyles({
     backgroundColor: colors.black,
     cursor: "pointer",
   },
-  link: {
-    background: "transparent",
-    border: "none",
-    fontSize: pxToRem(12),
-    lineHeight: pxToRem(14),
-    letterSpacing: "1.8px",
-    cursor: "pointer",
-  },
   secondary: {
     border: "none",
     fontSize: pxToRem(14),
@@ -29,6 +21,14 @@ const useStyles = createUseStyles({
     background: "transparent",
     color: colors.black,
     marginBottom: pxToRem(10),
+    cursor: "pointer",
+  },
+  link: {
+    background: "transparent",
+    border: "none",
+    fontSize: pxToRem(12),
+    lineHeight: pxToRem(14),
+    letterSpacing: "1.8px",
     cursor: "pointer",
   },
 });

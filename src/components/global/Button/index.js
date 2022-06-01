@@ -13,8 +13,8 @@ const Button = ({ className, styleType = buttonStyles.primary, ...props }) => {
       className={cn(
         {
           [classes.primary]: styleType === buttonStyles.primary,
-          [classes.link]: styleType === buttonStyles.link,
           [classes.secondary]: styleType === buttonStyles.secondary,
+          [classes.link]: styleType === buttonStyles.link,
         },
         className
       )}
