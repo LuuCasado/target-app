@@ -15,11 +15,20 @@ const useStyles = createUseStyles({
   },
   link: {
     background: "transparent",
-    border: "transparent",
+    border: "none",
     fontSize: pxToRem(12),
     lineHeight: pxToRem(14),
     letterSpacing: "1.8px",
     cursor: "pointer",
+  },
+  menu: {
+    border: "none",
+    fontSize: pxToRem(14),
+    lineHeight: pxToRem(16),
+    letterSpacing: "2px",
+    background: "transparent",
+    color: colors.black,
+    marginBottom: pxToRem(10),
   },
 });
 

@@ -14,6 +14,7 @@ const Button = ({ className, styleType = buttonStyles.primary, ...props }) => {
         {
           [classes.primary]: styleType === buttonStyles.primary,
           [classes.link]: styleType === buttonStyles.link,
+          [classes.menu]: styleType === buttonStyles.menu,
         },
         className
       )}

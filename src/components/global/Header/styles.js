@@ -10,8 +10,9 @@ const useStyles = createUseStyles({
     width: "100%",
     alignItems: "center",
   },
-  menuIcon: {
+  icon: {
     marginLeft: pxToRem(22),
+    cursor: "pointer",
   },
 });
 

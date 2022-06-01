@@ -15,7 +15,6 @@ const useStyles = createUseStyles({
     },
   },
   leftContainer: {
-    paddingTop: pxToRem(100),
     textAlign: "center",
 
     "& > h1": {
