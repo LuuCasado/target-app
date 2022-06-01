@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 
 import Header from "components/global/Header";
+import SiderMenu from "components/global/SiderMenu";
 import useSession from "hooks/useSession";
 import useStyles from "./styles";
 
 const LeftContainer = ({ children, className }) => {
   const classes = useStyles();
   const { isLoggedIn } = useSession();
+  const [isSiderOpen, setIsSiderOpen] = useState(false);
 
   return (
     <div
@@ -16,8 +18,15 @@ const LeftContainer = ({ children, className }) => {
         [classes.authenticated]: isLoggedIn,
       })}
     >
-      <Header />
-      <div className={cn(className)}>{children}</div>
+      <Header
+        isSiderOpen={isSiderOpen}
+        toggleSider={() => setIsSiderOpen(!isSiderOpen)}
+      />
+      {isSiderOpen ? (
+        <SiderMenu isLoggedIn={isLoggedIn} />
+      ) : (
+        <div className={cn(className)}>{children}</div>
+      )}
     </div>
   );
 };
