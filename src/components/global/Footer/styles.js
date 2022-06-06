@@ -5,6 +5,8 @@ import { pxToRem } from "utils/helpers";
 const useStyles = createUseStyles({
   smilies: {
     width: pxToRem(48),
+    position: "absolute",
+    bottom: 0,
   },
 });
 
