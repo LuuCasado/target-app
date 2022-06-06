@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
   },
   dropbtn: {
     border: `1px solid ${colors.darkGrey}`,
-    padding: `${pxToRem(10)} 0`,
+    padding: `${pxToRem(10)}`,
     letterSpacing: "1.5px",
     fontSize: pxToRem(11),
     boxSizing: "border-box",

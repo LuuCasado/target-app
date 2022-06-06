@@ -8,7 +8,7 @@ const mapZoom = 13;
 const startingLatitude = 37.36765;
 const startingLongitude = -121.91599;
 
-const Map = () => {
+const Map = ({ onCoordChange }) => {
   const classes = useStyles();
   const mapElement = useRef();
   const [mapLongitude, setLongitude] = useState(startingLongitude);
@@ -25,10 +25,17 @@ const Map = () => {
 
     setMap(map);
 
+    onCoordChange &&
+      onCoordChange({
+        lat: startingLatitude,
+        long: startingLongitude,
+      });
+
     navigator.geolocation?.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         setLatitude(latitude);
         setLongitude(longitude);
+        onCoordChange && onCoordChange({ lat: latitude, long: longitude });
       }
     );
 

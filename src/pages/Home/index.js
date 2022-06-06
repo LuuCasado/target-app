@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <LeftContainer className={classes.leftContainer}>
+      <LeftContainer hideFooter className={classes.leftContainer}>
         <img src={smilies} alt="smiliesIcon" />
         <h2>Welcome to TARGET</h2>
         <h3>Find people near you & Connect</h3>

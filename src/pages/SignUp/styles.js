@@ -30,9 +30,6 @@ const useStyles = createUseStyles({
     backgroundColor: colors.lightblue,
     paddingTop: pxToRem(50),
   },
-  form: {
-    width: "33%",
-  },
 });
 
 export default useStyles;
