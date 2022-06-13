@@ -34,11 +34,11 @@ const useTargets = () => {
     } catch ({
       response: {
         data: {
-          errors: { user },
+          errors: { user, targets_limit },
         },
       },
     }) {
-      setErrors(user);
+      setErrors(user || targets_limit);
     }
   };
 

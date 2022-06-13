@@ -28,7 +28,6 @@ const LeftContainer = ({ children, className, hideFooter }) => {
       ) : (
         <div className={cn(className)}>{children}</div>
       )}
-      {!hideFooter && !isSiderOpen && <Footer />}
     </div>
   );
 };

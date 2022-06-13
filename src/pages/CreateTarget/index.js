@@ -10,12 +10,12 @@ import useStyles from "./styles";
 
 const CreateTarget = () => {
   const classes = useStyles();
-  const { handleCreate, topics, errors } = useTargets();
+  const { handleCreate, topics, errors, targets } = useTargets();
   const [mapLongitude, setLongitude] = useState();
   const [mapLatitude, setLatitude] = useState();
-  const onCoordChange = ({ lat, long }) => {
+  const onCoordChange = ({ lat, lng }) => {
     setLatitude(lat);
-    setLongitude(long);
+    setLongitude(lng);
   };
 
   return (
@@ -32,7 +32,7 @@ const CreateTarget = () => {
         />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
-        <Map onCoordChange={onCoordChange} />
+        <Map onCoordChange={onCoordChange} targets={targets} topics={topics} />
       </RightContainer>
     </div>
   );
