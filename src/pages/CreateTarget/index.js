@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { ReactComponent as TargetIcon } from "assets/icons/target.svg";
 import CreateTargetForm from "components/auth/CreateTargetForm";
@@ -13,10 +13,13 @@ const CreateTarget = () => {
   const { handleCreate, topics, errors, targets } = useTargets();
   const [mapLongitude, setLongitude] = useState();
   const [mapLatitude, setLatitude] = useState();
-  const onCoordChange = ({ lat, lng }) => {
-    setLatitude(lat);
-    setLongitude(lng);
-  };
+  const onCoordChange = useCallback(
+    ({ lat, lng }) => {
+      setLatitude(lat);
+      setLongitude(lng);
+    },
+    [setLatitude, setLongitude]
+  );
 
   return (
     <div className={classes.container}>

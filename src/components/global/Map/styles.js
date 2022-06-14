@@ -1,6 +1,7 @@
 import { createUseStyles } from "react-jss";
 
 import currentPosition from "assets/icons/marker-current-position.png";
+import { colors } from "constants/colors";
 import { pxToRem } from "utils/helpers";
 
 const useStyles = createUseStyles({
@@ -19,7 +20,8 @@ const useStyles = createUseStyles({
     backgroundSize: "cover",
     width: pxToRem(45),
     height: pxToRem(45),
-    background: "rgba(239, 198, 56, 0.7)",
+    background: colors.yellowMarker,
+    opacity: 0.7,
     borderRadius: "100%",
     display: "flex",
     justifyContent: "center",
@@ -30,13 +32,16 @@ const useStyles = createUseStyles({
       height: pxToRem(25),
       backgroundSize: "contain",
       mixBlendMode: "multiply",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
     },
   },
   previewMarker: {
     backgroundSize: "cover",
     width: pxToRem(45),
     height: pxToRem(45),
-    background: "rgba(255, 255, 255, 0.7)",
+    background: colors.white,
+    opacity: 0.7,
     border: "1px solid #EFC638",
     borderRadius: "100%",
   },

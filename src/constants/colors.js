@@ -5,4 +5,5 @@ export const colors = {
   lightblue: "#2fbcf7",
   darkGrey: "#060606",
   seashell: "#f1f1f1",
+  yellowMarker: "#EFC638B2",
 };

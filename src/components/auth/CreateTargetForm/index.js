@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import cn from "classnames";
 
 import { validateEmpty } from "utils/validations";
@@ -26,7 +26,7 @@ const CreateTargetForm = ({
     topic: "",
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const errors = {
       title: validateEmpty(values.title),
       topic: validateEmpty(values.topic),
@@ -36,14 +36,17 @@ const CreateTargetForm = ({
     if (hasErrors(errors)) return;
 
     handleCreate(values);
-  };
+  }, [values, setErrors, handleCreate]);
 
-  const handleInput = ({ key, value }) => {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  };
+  const handleInput = useCallback(
+    ({ key, value }) => {
+      setValues({
+        ...values,
+        [key]: value,
+      });
+    },
+    [setValues, values]
+  );
 
   return (
     <div className={cn(classes.containerForm, className)}>

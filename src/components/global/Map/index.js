@@ -10,12 +10,17 @@ const startingLongitude = -121.91599;
 
 const createMarker = ({ lng, lat, className, map, icon }) => {
   const element = document.createElement("div");
+
   if (icon) {
     const iconElement = document.createElement("div");
+
     iconElement.style.backgroundImage = `url(${icon})`;
+
     element.appendChild(iconElement);
   }
+
   element.classList.add(className);
+
   return new tt.Marker({ element }).setLngLat([lng, lat]).addTo(map);
 };
 
@@ -35,9 +40,8 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
       center: [mapLongitude, mapLatitude],
       zoom: mapZoom,
     });
-    const element = document.createElement("div");
 
-    createMarker({
+    const currentMarker = createMarker({
       lng: mapLongitude,
       lat: mapLatitude,
       className: classes.currentMarker,
@@ -54,6 +58,13 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
 
     navigator.geolocation?.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
+        currentMarker.remove();
+        createMarker({
+          lat: latitude,
+          lng: longitude,
+          className: classes.currentMarker,
+          map,
+        });
         setLatitude(latitude);
         setLongitude(longitude);
         onCoordChange && onCoordChange({ lat: latitude, lng: longitude });

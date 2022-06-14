@@ -16,7 +16,7 @@ const SiderMenu = ({ isLoggedIn }) => {
       [authenticatedMenu.CREATE_TARGET]: () => navigate(routes.createTarget),
       [authenticatedMenu.ABOUT]: () => console.error(authenticatedMenu.ABOUT),
     }),
-    []
+    [navigate]
   );
 
   const unauthActions = useMemo(
