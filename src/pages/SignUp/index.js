@@ -16,11 +16,7 @@ const SignUp = () => {
     <div className={classes.container}>
       <LeftContainer className={classes.leftContainer}>
         <h1>SIGN UP</h1>
-        <SignUpForm
-          className={classes.form}
-          handleSignUp={handleSignUp}
-          externalErrors={errors}
-        />
+        <SignUpForm handleSignUp={handleSignUp} externalErrors={errors} />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <SamplePhone />

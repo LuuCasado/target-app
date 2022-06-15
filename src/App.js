@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "pages/Home";
+import CreateTarget from "pages/CreateTarget";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import routes from "constants/routes";
@@ -23,6 +24,11 @@ const App = () => {
               exact
               path={routes.home}
               element={<PrivateRoute page={<Home />} />}
+            />
+            <Route
+              exact
+              path={routes.createTarget}
+              element={<PrivateRoute page={<CreateTarget />} />}
             />
             <Route exact path={routes.signIn} element={<SignIn />} />
             <Route exact path={routes.signUp} element={<SignUp />} />

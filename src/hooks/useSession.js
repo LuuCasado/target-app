@@ -9,8 +9,8 @@ import AuthService from "services/authService";
 import axios from "axios";
 
 const useSession = () => {
-  const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.auth.user);
+  const [errors, setErrors] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [interceptor, setInterceptor] = useState();
   const navigate = useNavigate();

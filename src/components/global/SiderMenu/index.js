@@ -1,20 +1,22 @@
 import React, { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { buttonStyles } from "constants/styleTypes";
 import { authenticatedMenu, unauthenticatedMenu } from "constants/constants";
+import routes from "constants/routes";
 import Button from "components/global/Button";
 import useStyles from "./styles";
 
 const SiderMenu = ({ isLoggedIn }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const authActions = useMemo(
     () => ({
-      [authenticatedMenu.CREATE_TARGET]: () =>
-        console.log(authenticatedMenu.CREATE_TARGET),
+      [authenticatedMenu.CREATE_TARGET]: () => navigate(routes.createTarget),
       [authenticatedMenu.ABOUT]: () => console.error(authenticatedMenu.ABOUT),
     }),
-    []
+    [navigate]
   );
 
   const unauthActions = useMemo(
