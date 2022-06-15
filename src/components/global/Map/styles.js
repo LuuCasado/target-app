@@ -2,7 +2,7 @@ import { createUseStyles } from "react-jss";
 
 import currentPosition from "assets/icons/marker-current-position.png";
 import { colors } from "constants/colors";
-import { pxToRem } from "utils/helpers";
+import { pxToRem, hexToRGBA } from "utils/helpers";
 
 const useStyles = createUseStyles({
   map: {
@@ -20,8 +20,7 @@ const useStyles = createUseStyles({
     backgroundSize: "cover",
     width: pxToRem(45),
     height: pxToRem(45),
-    background: colors.yellowMarker,
-    opacity: 0.7,
+    background: hexToRGBA(colors.warmYellow, 0.7),
     borderRadius: "100%",
     display: "flex",
     justifyContent: "center",
@@ -40,9 +39,8 @@ const useStyles = createUseStyles({
     backgroundSize: "cover",
     width: pxToRem(45),
     height: pxToRem(45),
-    background: colors.white,
-    opacity: 0.7,
-    border: "1px solid #EFC638",
+    background: hexToRGBA(colors.white, 0.7),
+    border: `1px solid ${colors.warmYellow}`,
     borderRadius: "100%",
   },
 });

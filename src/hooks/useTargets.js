@@ -44,7 +44,7 @@ const useTargets = () => {
         setErrors(user || targets_limit);
       }
     },
-    [dispatch, setErrors]
+    [dispatch, setErrors, topics]
   );
 
   useEffect(() => {
