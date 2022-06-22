@@ -6,12 +6,14 @@ import Map from "components/global/Map";
 import LeftContainer from "components/global/LeftContainer";
 import RightContainer from "components/global/RightContainer";
 import smilies from "assets/icons/smilies.svg";
+import useTargets from "hooks/useTargets";
 import useSession from "hooks/useSession";
 import useStyles from "./styles";
 
 const Home = () => {
   const classes = useStyles();
   const { isLoggedIn, handleLogout } = useSession();
+  const { topics, targets } = useTargets();
 
   return (
     <div className={classes.container}>
@@ -34,7 +36,7 @@ const Home = () => {
         </p>
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
-        <Map />
+        <Map targets={targets} topics={topics} />
       </RightContainer>
     </div>
   );

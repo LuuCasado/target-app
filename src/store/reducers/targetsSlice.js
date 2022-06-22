@@ -13,9 +13,13 @@ export const targetsSlice = createSlice({
     getTopicsSuccessful: (state, { payload }) => {
       state.topics = payload;
     },
+    getTargetsSuccessful: (state, { payload }) => {
+      state.targets = payload;
+    },
   },
 });
 
-export const { createSuccessful, getTopicsSuccessful } = targetsSlice.actions;
+export const { createSuccessful, getTopicsSuccessful, getTargetsSuccessful } =
+  targetsSlice.actions;
 
 export default targetsSlice.reducer;

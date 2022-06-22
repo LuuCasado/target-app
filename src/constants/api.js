@@ -6,4 +6,5 @@ export const endpoints = {
   signOut: "/api/v1/users/sign_out",
   createTarget: "/api/v1/targets",
   getTopics: "/api/v1/topics",
+  getTargets: "/api/v1/targets",
 };
