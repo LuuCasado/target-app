@@ -5,6 +5,7 @@ import TargetsService from "services/targetsService";
 import {
   createSuccessful,
   getTopicsSuccessful,
+  getTargetsSuccessful,
 } from "store/reducers/targetsSlice";
 
 const useTargets = () => {
@@ -25,15 +26,29 @@ const useTargets = () => {
     }
   }, [dispatch]);
 
+  const getTargets = useCallback(async () => {
+    try {
+      const {
+        data: { targets },
+      } = await TargetsService.getTargets();
+
+      dispatch(getTargetsSuccessful(targets.map(({ target }) => target)));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const handleCreate = useCallback(
     async ({ topic, ...rest }) => {
       try {
-        const { data } = await TargetsService.createTarget({
+        const {
+          data: { target },
+        } = await TargetsService.createTarget({
           ...rest,
           topic_id: topics.find(({ label }) => label === topic).id,
         });
 
-        dispatch(createSuccessful(data));
+        dispatch(createSuccessful(target));
       } catch ({
         response: {
           data: {
@@ -49,6 +64,8 @@ const useTargets = () => {
 
   useEffect(() => {
     getTopics();
+
+    getTargets();
   }, []);
 
   return { handleCreate, topics, targets, errors };

@@ -28,6 +28,12 @@ class TargetsService {
       data: {},
     });
   }
+
+  static getTargets() {
+    return axios.get(`${base}${endpoints.getTargets}`, {
+      data: {},
+    });
+  }
 }
 
 export default TargetsService;

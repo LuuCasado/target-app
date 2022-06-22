@@ -106,7 +106,7 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
   useEffect(() => {
     if (!targets.length || !topics.length) return;
 
-    targets.forEach(({ target: { lat, lng, topic_id } }) => {
+    targets.forEach(({ lat, lng, topic_id }) => {
       if (
         markers.find(
           ({ _lngLat: markerCoord }) =>
