@@ -34,6 +34,12 @@ class TargetsService {
       data: {},
     });
   }
+
+  static deleteTarget({ id }) {
+    return axios.delete(`${base}${endpoints.deleteTarget}/${id}`, {
+      data: {},
+    });
+  }
 }
 
 export default TargetsService;

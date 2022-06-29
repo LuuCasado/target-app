@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import cn from "classnames";
 
 import Header from "components/global/Header";
-import Footer from "components/global/Footer";
 import SiderMenu from "components/global/SiderMenu";
 import useSession from "hooks/useSession";
 import useStyles from "./styles";

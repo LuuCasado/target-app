@@ -6,4 +6,6 @@ export const colors = {
   darkGrey: "#060606",
   seashell: "#f1f1f1",
   warmYellow: "#EFC638",
+  monza: "#d6031d",
+  malibu: "#74d1f4",
 };

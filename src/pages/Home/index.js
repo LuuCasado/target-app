@@ -13,7 +13,7 @@ import useStyles from "./styles";
 const Home = () => {
   const classes = useStyles();
   const { isLoggedIn, handleLogout } = useSession();
-  const { topics, targets } = useTargets();
+  const { topics, targets, startEditingTarget } = useTargets();
 
   return (
     <div className={classes.container}>
@@ -36,7 +36,11 @@ const Home = () => {
         </p>
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
-        <Map targets={targets} topics={topics} />
+        <Map
+          targets={targets}
+          topics={topics}
+          startEditingTarget={startEditingTarget}
+        />
       </RightContainer>
     </div>
   );
