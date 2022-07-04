@@ -37,7 +37,6 @@ const EditTarget = () => {
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <Map
-          onCoordChange={onCoordChange}
           targets={targets}
           topics={topics}
           startEditingTarget={startEditingTarget}
