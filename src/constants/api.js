@@ -7,4 +7,5 @@ export const endpoints = {
   createTarget: "/api/v1/targets",
   getTopics: "/api/v1/topics",
   getTargets: "/api/v1/targets",
+  deleteTarget: "/api/v1/targets",
 };

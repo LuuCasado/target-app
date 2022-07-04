@@ -16,6 +16,7 @@ const useStyles = createUseStyles({
     width: pxToRem(43),
     height: pxToRem(50),
   },
+
   targetMarker: {
     backgroundSize: "cover",
     width: pxToRem(45),
@@ -25,6 +26,7 @@ const useStyles = createUseStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    cursor: "pointer",
 
     "& > div": {
       width: pxToRem(25),
@@ -35,6 +37,11 @@ const useStyles = createUseStyles({
       backgroundPosition: "center",
     },
   },
+
+  targetClicked: {
+    background: hexToRGBA(colors.malibu, 0.7),
+  },
+
   previewMarker: {
     backgroundSize: "cover",
     width: pxToRem(45),

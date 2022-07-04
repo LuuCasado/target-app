@@ -1,18 +1,26 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import TargetsService from "services/targetsService";
 import {
   createSuccessful,
   getTopicsSuccessful,
   getTargetsSuccessful,
+  editTarget,
+  deleteTarget,
 } from "store/reducers/targetsSlice";
+import { modalContext } from "components/global/Modal/ModalProvider";
+import TargetsService from "services/targetsService";
+import routes from "constants/routes";
 
 const useTargets = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const topics = useSelector((state) => state.targets.topics);
   const targets = useSelector((state) => state.targets.targets);
+  const editingTargetId = useSelector((state) => state.targets.editingTargetId);
+  const { closeModal } = useContext(modalContext);
 
   const getTopics = useCallback(async () => {
     try {
@@ -36,7 +44,15 @@ const useTargets = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [dispatch]);
+
+  const startEditingTarget = useCallback(
+    (id) => {
+      dispatch(editTarget(id));
+      navigate(routes.editTarget);
+    },
+    [dispatch, navigate]
+  );
 
   const handleCreate = useCallback(
     async ({ topic, ...rest }) => {
@@ -62,13 +78,45 @@ const useTargets = () => {
     [dispatch, setErrors, topics]
   );
 
+  const handleDelete = useCallback(
+    async (id) => {
+      try {
+        await TargetsService.deleteTarget({ id });
+
+        dispatch(deleteTarget(id));
+        closeModal();
+        navigate(routes.home);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [dispatch, closeModal, navigate]
+  );
+
+  const handleEditTarget = useCallback(
+    async ({ lng: mapLongitude, lat: mapLatitude, id, ...rest }) => {
+      await handleDelete(id);
+      await handleCreate({ mapLongitude, mapLatitude, ...rest });
+    },
+    [handleCreate, handleDelete]
+  );
+
   useEffect(() => {
     getTopics();
 
     getTargets();
   }, []);
 
-  return { handleCreate, topics, targets, errors };
+  return {
+    handleCreate,
+    startEditingTarget,
+    handleDelete,
+    handleEditTarget,
+    editingTargetId,
+    topics,
+    targets,
+    errors,
+  };
 };
 
 export default useTargets;

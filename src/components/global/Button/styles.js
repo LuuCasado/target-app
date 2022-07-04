@@ -13,6 +13,17 @@ const useStyles = createUseStyles({
     backgroundColor: colors.black,
     cursor: "pointer",
   },
+
+  remove: {
+    border: `1px solid ${colors.monza}`,
+    padding: `${pxToRem(10)} ${pxToRem(40)}`,
+    letterSpacing: "1.65px",
+    fontSize: pxToRem(11),
+    color: colors.white,
+    backgroundColor: colors.monza,
+    cursor: "pointer",
+  },
+
   secondary: {
     border: "none",
     fontSize: pxToRem(14),

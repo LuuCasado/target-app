@@ -5,6 +5,7 @@ export const targetsSlice = createSlice({
   initialState: {
     targets: [],
     topics: [],
+    editingTargetId: null,
   },
   reducers: {
     createSuccessful: (state, { payload }) => {
@@ -16,10 +17,21 @@ export const targetsSlice = createSlice({
     getTargetsSuccessful: (state, { payload }) => {
       state.targets = payload;
     },
+    editTarget: (state, { payload }) => {
+      state.editingTargetId = payload;
+    },
+    deleteTarget: (state, { payload }) => {
+      state.targets = state.targets.filter(({ id }) => id !== payload);
+    },
   },
 });
 
-export const { createSuccessful, getTopicsSuccessful, getTargetsSuccessful } =
-  targetsSlice.actions;
+export const {
+  createSuccessful,
+  getTopicsSuccessful,
+  getTargetsSuccessful,
+  editTarget,
+  deleteTarget,
+} = targetsSlice.actions;
 
 export default targetsSlice.reducer;

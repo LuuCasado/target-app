@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import tt from "@tomtom-international/web-sdk-maps";
+import cn from "classnames";
 
 import useStyles from "./styles";
 
@@ -8,8 +9,12 @@ const mapZoom = 13;
 const startingLatitude = 37.36765;
 const startingLongitude = -121.91599;
 
-const createMarker = ({ lng, lat, className, map, icon }) => {
+const createMarker = ({ lng, lat, className, map, icon, onClick }) => {
+  if (!map?.on) return;
+
   const element = document.createElement("div");
+
+  element.onclick = onClick;
 
   if (icon) {
     const iconElement = document.createElement("div");
@@ -19,12 +24,20 @@ const createMarker = ({ lng, lat, className, map, icon }) => {
     element.appendChild(iconElement);
   }
 
-  element.classList.add(className);
+  className.split(" ").forEach((elem) => {
+    element.classList.add(elem);
+  });
 
   return new tt.Marker({ element }).setLngLat([lng, lat]).addTo(map);
 };
 
-const Map = ({ onCoordChange, targets = [], topics = [] }) => {
+const Map = ({
+  onCoordChange,
+  startEditingTarget,
+  editingTargetId,
+  targets = [],
+  topics = [],
+}) => {
   const classes = useStyles();
   const mapElement = useRef();
   const [mapLongitude, setLongitude] = useState(startingLongitude);
@@ -71,14 +84,19 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
       }
     );
 
-    return () => map.remove();
+    return () => {
+      if (currentMarker) currentMarker.remove();
+      if (previewMarker) previewMarker.remove();
+      markers.forEach((marker) => marker.remove());
+      map.remove();
+    };
   }, []);
 
   useEffect(() => {
     if (!map?.on) return;
 
     const clickListener = ({ lngLat }) => {
-      onCoordChange(lngLat);
+      onCoordChange && onCoordChange(lngLat);
 
       previewMarker && previewMarker.remove();
 
@@ -104,9 +122,10 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
   }, [map, mapLongitude, mapLatitude]);
 
   useEffect(() => {
+    if (!map?.on) return;
     if (!targets.length || !topics.length) return;
 
-    targets.forEach(({ lat, lng, topic_id }) => {
+    targets.forEach(({ lat, lng, topic_id, title, radius, id }) => {
       if (
         markers.find(
           ({ _lngLat: markerCoord }) =>
@@ -120,14 +139,20 @@ const Map = ({ onCoordChange, targets = [], topics = [] }) => {
       const marker = createMarker({
         lng,
         lat,
-        className: classes.targetMarker,
+        className: cn(classes.targetMarker, {
+          [classes.targetClicked]: id === editingTargetId,
+        }),
+
         map,
         icon: topic.icon,
+        onClick: () => {
+          startEditingTarget(id);
+        },
       });
 
       setMarkers([...markers, marker]);
     });
-  }, [targets, topics]);
+  }, [targets, topics, map]);
 
   useEffect(() => {
     if (previewMarker) {
