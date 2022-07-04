@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import cn from "classnames";
 
+import { modalContext } from "components/global/Modal/ModalProvider";
 import { buttonStyles } from "constants/styleTypes";
 import { validateEmpty } from "utils/validations";
 import { hasErrors } from "utils/helpers";
@@ -17,6 +18,7 @@ const EditTargetForm = ({
   handleDelete,
   handleEditTarget,
 }) => {
+  const { openModal, closeModal } = useContext(modalContext);
   const classes = useStyles();
   const [values, setValues] = useState({
     radius: target.radius.toString(),
@@ -97,7 +99,24 @@ const EditTargetForm = ({
       )}
       <div className={classes.buttons}>
         <Button
-          onClick={() => handleDelete(target.id)}
+          onClick={() =>
+            openModal(
+              <>
+                <div className={classes.answer}>
+                  Are you sure to delete this target?
+                </div>
+                <div className={classes.buttons}>
+                  <Button
+                    onClick={() => handleDelete(target.id)}
+                    styleType={buttonStyles.remove}
+                  >
+                    YES
+                  </Button>
+                  <Button onClick={closeModal}>NO</Button>
+                </div>
+              </>
+            )
+          }
           styleType={buttonStyles.remove}
         >
           DELETE

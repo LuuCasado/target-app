@@ -8,4 +8,5 @@ export const colors = {
   warmYellow: "#EFC638",
   monza: "#d6031d",
   malibu: "#74d1f4",
+  shadowGrey: "#888888",
 };

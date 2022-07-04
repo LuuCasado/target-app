@@ -1,9 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import TargetsService from "services/targetsService";
-import routes from "constants/routes";
 import {
   createSuccessful,
   getTopicsSuccessful,
@@ -11,6 +9,9 @@ import {
   editTarget,
   deleteTarget,
 } from "store/reducers/targetsSlice";
+import { modalContext } from "components/global/Modal/ModalProvider";
+import TargetsService from "services/targetsService";
+import routes from "constants/routes";
 
 const useTargets = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const useTargets = () => {
   const topics = useSelector((state) => state.targets.topics);
   const targets = useSelector((state) => state.targets.targets);
   const editingTargetId = useSelector((state) => state.targets.editingTargetId);
+  const { closeModal } = useContext(modalContext);
 
   const getTopics = useCallback(async () => {
     try {
@@ -82,6 +84,7 @@ const useTargets = () => {
         await TargetsService.deleteTarget({ id });
 
         dispatch(deleteTarget(id));
+        closeModal();
         navigate(routes.home);
       } catch (error) {
         console.log(error);
