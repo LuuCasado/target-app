@@ -11,7 +11,7 @@ const Modal = () => {
   if (!isOpen) return null;
 
   return (
-    <div id="myModal" className={classes.modal}>
+    <div className={classes.modal}>
       <div className={classes.content}>
         <CrossIcon onClick={closeModal} className={classes.close} />
         <div>{content}</div>

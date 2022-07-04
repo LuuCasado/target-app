@@ -15,20 +15,10 @@ const EditTarget = () => {
     errors,
     targets,
     editingTargetId,
-    handleCreate,
     startEditingTarget,
     handleDelete,
     handleEditTarget,
   } = useTargets();
-  const [mapLongitude, setLongitude] = useState();
-  const [mapLatitude, setLatitude] = useState();
-  const onCoordChange = useCallback(
-    ({ lat, lng }) => {
-      setLatitude(lat);
-      setLongitude(lng);
-    },
-    [setLatitude, setLongitude]
-  );
 
   const target = targets.find(({ id }) => id === editingTargetId);
 
@@ -43,9 +33,6 @@ const EditTarget = () => {
           target={target}
           handleDelete={handleDelete}
           handleEditTarget={handleEditTarget}
-          handleCreate={({ ...props }) =>
-            handleCreate({ ...props, mapLongitude, mapLatitude })
-          }
         />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>

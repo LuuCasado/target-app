@@ -54,7 +54,7 @@ const EditTargetForm = ({
   );
   return (
     <div className={cn(classes.containerForm, className)}>
-      <div>
+      <div className={classes.inputContainer}>
         <span>SPECIFY AREA LENGHT</span>
         <Input
           className={classes.input}
@@ -72,7 +72,7 @@ const EditTargetForm = ({
           }
         />
       </div>
-      <div>
+      <div className={classes.inputContainer}>
         <span>TARGET TITLE</span>
         <Input
           className={classes.input}
@@ -84,7 +84,7 @@ const EditTargetForm = ({
           }
         />
       </div>
-      <div>
+      <div className={classes.inputContainer}>
         <span>SELECT A TOPIC</span>
         <DropdownMenu
           value={values.topic}

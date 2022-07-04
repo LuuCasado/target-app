@@ -9,27 +9,28 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     alignItems: "center",
     width: "70%",
+  },
 
-    "& > div": {
-      display: "flex",
-      flexDirection: "column",
-      width: "100%",
-      marginBottom: pxToRem(15),
+  inputContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    marginBottom: pxToRem(15),
 
-      "& > span": {
-        fontSize: pxToRem(11),
-        lineHeight: pxToRem(13),
-        letterSpacing: "1px",
-        textAlign: "left",
-        fontWeight: 500,
-      },
+    "& > span": {
+      fontSize: pxToRem(11),
+      lineHeight: pxToRem(13),
+      letterSpacing: "1px",
+      textAlign: "left",
+      fontWeight: 500,
     },
   },
 
   buttons: {
-    display: "flex!important",
-    flexDirection: "row!important",
+    display: "flex",
+    flexDirection: "row",
     justifyContent: "space-between",
+    width: "100%",
   },
   input: {
     width: "100%",

@@ -139,10 +139,10 @@ const Map = ({
       const marker = createMarker({
         lng,
         lat,
-        className:
-          id === editingTargetId
-            ? cn(classes.targetMarker, classes.targetClicked)
-            : classes.targetMarker,
+        className: cn(classes.targetMarker, {
+          [classes.targetClicked]: id === editingTargetId,
+        }),
+
         map,
         icon: topic.icon,
         onClick: () => {

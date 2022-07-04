@@ -51,7 +51,7 @@ const useTargets = () => {
       dispatch(editTarget(id));
       navigate(routes.editTarget);
     },
-    [dispatch]
+    [dispatch, navigate]
   );
 
   const handleCreate = useCallback(
@@ -90,7 +90,7 @@ const useTargets = () => {
         console.log(error);
       }
     },
-    [dispatch]
+    [dispatch, closeModal, navigate]
   );
 
   const handleEditTarget = useCallback(
