@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import CreateTarget from "pages/CreateTarget";
 import EditTarget from "pages/EditTarget";
+import EditProfile from "pages/EditProfile";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import routes from "constants/routes";
@@ -38,6 +39,11 @@ const App = () => {
                 exact
                 path={routes.editTarget}
                 element={<PrivateRoute page={<EditTarget />} />}
+              />
+              <Route
+                exact
+                path={routes.editProfile}
+                element={<PrivateRoute page={<EditProfile />} />}
               />
               <Route exact path={routes.signIn} element={<SignIn />} />
               <Route exact path={routes.signUp} element={<SignUp />} />

@@ -1,13 +1,14 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState } from "react";
 import cn from "classnames";
 
-import { modalContext } from "components/global/Modal/ModalProvider";
 import { buttonStyles } from "constants/styleTypes";
 import { validateEmpty } from "utils/validations";
 import { hasErrors } from "utils/helpers";
+import ConfirmDeleteTarget from "components/modals/ConfirmDeleteTarget";
 import Input from "components/global/Input";
 import Button from "components/global/Button";
 import DropdownMenu from "components/global/DropdownMenu";
+import useModal from "hooks/useModal";
 import useStyles from "./styles";
 
 const EditTargetForm = ({
@@ -18,7 +19,7 @@ const EditTargetForm = ({
   handleDelete,
   handleEditTarget,
 }) => {
-  const { openModal, closeModal } = useContext(modalContext);
+  const { openModal } = useModal();
   const classes = useStyles();
   const [values, setValues] = useState({
     radius: target.radius.toString(),
@@ -30,6 +31,14 @@ const EditTargetForm = ({
     title: "",
     topic: "",
   });
+
+  const onDeleteTarget = useCallback(
+    () =>
+      openModal(
+        <ConfirmDeleteTarget onConfim={() => handleDelete(target.id)} />
+      ),
+    [openModal, handleDelete, target]
+  );
 
   const handleSubmit = useCallback(() => {
     const errors = {
@@ -98,27 +107,7 @@ const EditTargetForm = ({
         <p className={classes.error}>Oops!... {externalError}</p>
       )}
       <div className={classes.buttons}>
-        <Button
-          onClick={() =>
-            openModal(
-              <>
-                <div className={classes.answer}>
-                  Are you sure to delete this target?
-                </div>
-                <div className={classes.buttons}>
-                  <Button
-                    onClick={() => handleDelete(target.id)}
-                    styleType={buttonStyles.remove}
-                  >
-                    YES
-                  </Button>
-                  <Button onClick={closeModal}>NO</Button>
-                </div>
-              </>
-            )
-          }
-          styleType={buttonStyles.remove}
-        >
+        <Button onClick={onDeleteTarget} styleType={buttonStyles.remove}>
           DELETE
         </Button>
         <Button onClick={handleSubmit}>SAVE</Button>
