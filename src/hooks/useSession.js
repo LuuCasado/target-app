@@ -115,7 +115,7 @@ const useSession = () => {
         setErrors(errors.email);
       }
     },
-    [user, openModal, handleLogout]
+    [user, openModal, handleLogout, setErrors]
   );
 
   const handleChangePassword = useCallback(
@@ -138,7 +138,7 @@ const useSession = () => {
         setErrors(full_messages);
       }
     },
-    [handleLogout, openModal]
+    [handleLogout, openModal, setErrors]
   );
 
   useEffect(() => {

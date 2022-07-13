@@ -5,8 +5,8 @@ import { ReactComponent as User } from "assets/icons/user.svg";
 import EditProfileForm from "components/auth/EditProfileForm";
 import LeftContainer from "components/global/LeftContainer";
 import RightContainer from "components/global/RightContainer";
-import useTargets from "hooks/useTargets";
 import Map from "components/global/Map";
+import useTargets from "hooks/useTargets";
 import useSession from "hooks/useSession";
 import useStyles from "./styles";
 
@@ -15,8 +15,7 @@ const EditProfile = () => {
   const { data: { username, email, id } = {} } = useSelector(
     (state) => state.auth.user
   );
-  const { errors, handleUpdateInfo, handleChangePassword, handleLogout } =
-    useSession();
+  const { errors, handleUpdateInfo, handleChangePassword } = useSession();
   const { topics, targets } = useTargets();
 
   if (!username) return null;
@@ -29,10 +28,8 @@ const EditProfile = () => {
         <EditProfileForm
           externalErrors={errors}
           email={email}
-          id={id}
           handleUpdateInfo={handleUpdateInfo}
           handleChangePassword={handleChangePassword}
-          handleLogout={handleLogout}
         />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>

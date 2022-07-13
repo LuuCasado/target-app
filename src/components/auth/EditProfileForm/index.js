@@ -15,7 +15,7 @@ import useStyles from "./styles";
 const EditProfileForm = ({
   className,
   email,
-  externalErrors: [externalError] = [],
+  externalErrors: [externalError],
   handleUpdateInfo,
   handleChangePassword,
 }) => {
