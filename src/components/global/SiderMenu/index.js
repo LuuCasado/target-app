@@ -15,7 +15,7 @@ const SiderMenu = ({ isLoggedIn }) => {
     () => ({
       [authenticatedMenu.CREATE_TARGET]: () => navigate(routes.createTarget),
       [authenticatedMenu.EDIT_PROFILE]: () => navigate(routes.editProfile),
-      [authenticatedMenu.ABOUT]: () => console.error(authenticatedMenu.ABOUT),
+      [authenticatedMenu.ABOUT]: () => navigate(routes.about),
     }),
     [navigate]
   );
@@ -24,8 +24,7 @@ const SiderMenu = ({ isLoggedIn }) => {
     () => ({
       [unauthenticatedMenu.CONTACT]: () =>
         console.log(unauthenticatedMenu.CONTACT),
-      [unauthenticatedMenu.ABOUT]: () =>
-        console.error(unauthenticatedMenu.ABOUT),
+      [authenticatedMenu.ABOUT]: () => navigate(routes.about),
     }),
     []
   );

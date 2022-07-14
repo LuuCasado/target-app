@@ -9,6 +9,7 @@ import EditTarget from "pages/EditTarget";
 import EditProfile from "pages/EditProfile";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
+import About from "pages/About";
 import routes from "constants/routes";
 import reducer from "store/reducers";
 import PrivateRoute from "components/auth/PrivateRoute";
@@ -45,6 +46,7 @@ const App = () => {
                 path={routes.editProfile}
                 element={<PrivateRoute page={<EditProfile />} />}
               />
+              <Route exact path={routes.about} element={<About />} />
               <Route exact path={routes.signIn} element={<SignIn />} />
               <Route exact path={routes.signUp} element={<SignUp />} />
             </Routes>
