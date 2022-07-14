@@ -37,6 +37,23 @@ class AuthService {
       data: {},
     });
   }
+
+  static updateUserInfo({ email, id }) {
+    const data = {
+      user: {
+        email,
+      },
+    };
+    return axios.put(`${base}${endpoints.signUp}/${id}`, data, config);
+  }
+  static changePassword({ currentPassword, newPassword, confirmNewPassword }) {
+    const data = {
+      current_password: currentPassword,
+      password: newPassword,
+      password_confirmation: confirmNewPassword,
+    };
+    return axios.put(`${base}${endpoints.changePassword}`, data, config);
+  }
 }
 
 export default AuthService;

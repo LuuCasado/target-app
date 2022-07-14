@@ -43,10 +43,6 @@ const useStyles = createUseStyles({
     lineHeight: pxToRem(13),
     letterSpacing: "1.65px",
   },
-  answer: {
-    marginTop: pxToRem(15),
-    marginBottom: pxToRem(15),
-  },
 });
 
 export default useStyles;

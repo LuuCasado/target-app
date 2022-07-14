@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ import {
   editTarget,
   deleteTarget,
 } from "store/reducers/targetsSlice";
-import { modalContext } from "components/global/Modal/ModalProvider";
+import useModal from "./useModal";
 import TargetsService from "services/targetsService";
 import routes from "constants/routes";
 
@@ -20,7 +20,7 @@ const useTargets = () => {
   const topics = useSelector((state) => state.targets.topics);
   const targets = useSelector((state) => state.targets.targets);
   const editingTargetId = useSelector((state) => state.targets.editingTargetId);
-  const { closeModal } = useContext(modalContext);
+  const { closeModal } = useModal();
 
   const getTopics = useCallback(async () => {
     try {

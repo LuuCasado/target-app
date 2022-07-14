@@ -4,6 +4,7 @@ const routes = {
   signUp: "/sign-up",
   createTarget: "/create-target",
   editTarget: "/edit-target",
+  editProfile: "/edit-profile",
 };
 
 export default routes;
