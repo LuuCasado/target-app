@@ -1,6 +1,7 @@
 import { createUseStyles } from "react-jss";
 
-import { pxToRem } from "utils/helpers";
+import { colors } from "constants/colors";
+import { pxToRem, hexToRGBA } from "utils/helpers";
 
 const useStyles = createUseStyles({
   container: {
@@ -17,22 +18,22 @@ const useStyles = createUseStyles({
     flex: 1,
   },
   leftContainer: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     textAlign: "center",
     paddingTop: pxToRem(40),
-
-    "& > h3": {
-      fontSize: pxToRem(18),
-      lineHeight: pxToRem(32),
-      margin: 0,
-      fontWeight: 500,
-    },
-
-    "& > p": {
-      fontSize: pxToRem(14),
-      maxWidth: pxToRem(321),
-      marginTop: 0,
-      lineHeight: pxToRem(23),
-    },
+    width: "100%",
+  },
+  buttonEdit: {
+    color: colors.lightblue,
+    fontWeight: "bold",
+  },
+  divider: {
+    color: hexToRGBA(colors.black, 0.5),
+    width: pxToRem(121),
+    margin: `${pxToRem(20)}`,
   },
 });
 

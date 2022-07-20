@@ -9,4 +9,6 @@ export const endpoints = {
   getTopics: "/api/v1/topics",
   getTargets: "/api/v1/targets",
   deleteTarget: "/api/v1/targets",
+  getConversation: "/api/v1/match_conversations",
+  getMessages: "/api/v1/match_conversations",
 };
