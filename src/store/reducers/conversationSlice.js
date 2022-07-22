@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { logout } from "./authSlice";
+
+const initialState = {
+  conversations: [],
+};
 
 export const conversationSlice = createSlice({
   name: "conversation",
-  initialState: {
-    conversations: [],
-  },
+  initialState,
+  extraReducers: (builder) =>
+    builder.addCase(logout, (state) => {
+      state.conversations = initialState.conversations;
+    }),
   reducers: {
     getConversationSuccessful: (state, { payload }) => {
       state.conversations = payload;

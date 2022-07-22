@@ -24,7 +24,6 @@ const Home = () => {
   const { topics, targets, startEditingTarget } = useTargets();
   const [showWelcome, setShowWelcome] = useState(true);
   const { conversations } = useConversations();
-
   const getLeftColumnContent = useCallback(() => {
     if (!targets.length) {
       return showWelcome ? (

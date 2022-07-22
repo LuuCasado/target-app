@@ -106,7 +106,7 @@ const useTargets = () => {
     getTopics();
 
     getTargets();
-  }, []);
+  }, [getTargets, getTopics]);
 
   return {
     handleCreate,

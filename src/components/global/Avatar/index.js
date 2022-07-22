@@ -6,12 +6,12 @@ import useStyles from "./styles";
 const Avatar = ({ user }) => {
   const classes = useStyles();
 
-  if (!user.data) return null;
+  if (!user.username) return null;
 
   return (
     <>
       <User className={classes.user} />
-      <div className={classes.userName}>{user.data.username}</div>
+      <div className={classes.userName}>{user.username}</div>
     </>
   );
 };

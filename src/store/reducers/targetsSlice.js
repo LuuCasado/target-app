@@ -1,14 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { logout } from "./authSlice";
+
+const initialState = {
+  targets: [],
+  topics: [],
+  editingTargetId: null,
+};
+
 export const targetsSlice = createSlice({
   name: "targets",
-  initialState: {
-    targets: [],
-    topics: [],
-    editingTargetId: null,
-  },
+  initialState,
+  extraReducers: (builder) =>
+    builder.addCase(logout, (state) => {
+      state.targets = initialState.targets;
+      state.topics = initialState.topics;
+      state.editingTargetId = initialState.editingTargetId;
+    }),
   reducers: {
-    createSuccessful: (state, { payload }) => {
+    createSuccessful: (state, { payload, type }) => {
       state.targets = [...state.targets, payload];
     },
     getTopicsSuccessful: (state, { payload }) => {

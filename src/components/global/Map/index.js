@@ -135,6 +135,7 @@ const Map = ({
   }, [map, mapLongitude, mapLatitude]);
 
   useEffect(() => {
+    console.log(targets);
     if (!map?.on) return;
     if (!targets.length || !topics.length) return;
 

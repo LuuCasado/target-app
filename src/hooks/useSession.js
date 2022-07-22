@@ -22,7 +22,10 @@ const useSession = () => {
   const handleLogin = useCallback(
     async (values) => {
       try {
-        const { data, headers } = await AuthService.logIn(values);
+        const {
+          data: { data },
+          headers,
+        } = await AuthService.logIn(values);
 
         const interceptor = axios.interceptors.request.use((config) => {
           config.headers = { ...config.headers, ...headers };
@@ -63,7 +66,7 @@ const useSession = () => {
         console.log(error);
       }
     },
-    [dispatch, interceptor]
+    [dispatch, interceptor, user]
   );
 
   const handleSignUp = useCallback(
@@ -103,7 +106,7 @@ const useSession = () => {
       try {
         const { data } = await AuthService.updateUserInfo({
           email,
-          id: user.data.id,
+          id: user.id,
         });
         handleLogout(true);
         openModal(<ChangeInfoSuccess />);
@@ -143,14 +146,14 @@ const useSession = () => {
 
   useEffect(() => {
     const authRawData = localStorage.getItem(localStorageKeys.auth);
+    let interceptor;
     if (authRawData) {
       const { data, headers } = JSON.parse(authRawData);
-
-      axios.interceptors.request.use((config) => {
+      interceptor = axios.interceptors.request.use((config) => {
         config.headers = { ...config.headers, ...headers };
         return config;
       });
-
+      setInterceptor(interceptor);
       setIsLoggedIn(true);
       if (!Object.values(user).length) {
         dispatch(loginSuccessful(data));
@@ -158,7 +161,12 @@ const useSession = () => {
     } else {
       setIsLoggedIn(false);
     }
-  }, [user]);
+    return () => {
+      if (interceptor) {
+        axios.interceptors.request.eject(interceptor);
+      }
+    };
+  }, [user, dispatch]);
 
   useEffect(() => {
     window.dispatchEvent(new Event("resize"));
