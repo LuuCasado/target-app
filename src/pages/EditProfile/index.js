@@ -16,8 +16,6 @@ const EditProfile = () => {
   const { errors, user, handleUpdateInfo, handleChangePassword } = useSession();
   const { topics, targets, startEditingTarget } = useTargets();
 
-  if (!user) return null;
-
   return (
     <div className={classes.container}>
       <LeftContainer className={classes.leftContainer}>

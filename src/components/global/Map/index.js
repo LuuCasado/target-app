@@ -113,7 +113,7 @@ const Map = ({
     };
 
     map.on("click", clickListener);
-
+    //👀
     return () => {
       map.off("click", clickListener);
       if (previewMarker) previewMarker.remove();
@@ -135,7 +135,6 @@ const Map = ({
   }, [map, mapLongitude, mapLatitude]);
 
   useEffect(() => {
-    console.log(targets);
     if (!map?.on) return;
     if (!targets.length || !topics.length) return;
 

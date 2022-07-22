@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import useStyles from "./styles";
 
 const FirstTarget = ({ topics }) => {
   const classes = useStyles();
-  const topicSlice = topics.slice(1, 4);
+  const topicSlice = useMemo(() => topics.slice(1, 4), [topics]);
 
   return (
     <div className={classes.container}>
@@ -13,7 +13,7 @@ const FirstTarget = ({ topics }) => {
       <div>
         {topicSlice.map(({ label, icon }) => (
           <div className={classes.topics}>
-            <img src={icon} />
+            <img src={icon} alt="topics" />
             <p>{label}</p>
           </div>
         ))}
