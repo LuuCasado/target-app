@@ -11,4 +11,5 @@ export const endpoints = {
   deleteTarget: "/api/v1/targets",
   getConversation: "/api/v1/match_conversations",
   getMessages: "/api/v1/match_conversations",
+  getChat: "/api/v1/cable",
 };

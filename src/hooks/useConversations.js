@@ -1,15 +1,26 @@
 import { useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { getConversationSuccessful } from "store/reducers/conversationSlice";
 import ConversationService from "services/conversationService";
 
 const useConversations = () => {
+  const dispatch = useDispatch();
+
+  const conversations = useSelector(
+    (state) => state.conversation.conversations
+  );
+
   const handleGetConversations = useCallback(async () => {
     try {
-      console.log(await ConversationService.getConversation());
+      const {
+        data: { matches },
+      } = await ConversationService.getConversation();
+      dispatch(getConversationSuccessful(matches));
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [dispatch]);
 
   const handleGetMessages = useCallback(async (id) => {
     try {
@@ -22,9 +33,9 @@ const useConversations = () => {
   useEffect(() => {
     handleGetConversations();
     //handleGetMessages();
-  }, []);
+  }, [handleGetConversations]);
 
-  return { handleGetConversations, handleGetMessages };
+  return { handleGetConversations, handleGetMessages, conversations };
 };
 
 export default useConversations;

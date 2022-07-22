@@ -13,7 +13,6 @@ const SiderMenu = ({ isLoggedIn }) => {
 
   const authActions = useMemo(
     () => ({
-      [authenticatedMenu.CREATE_TARGET]: () => navigate(routes.createTarget),
       [authenticatedMenu.EDIT_PROFILE]: () => navigate(routes.editProfile),
       [authenticatedMenu.ABOUT]: () => navigate(routes.about),
     }),
@@ -26,7 +25,7 @@ const SiderMenu = ({ isLoggedIn }) => {
         console.log(unauthenticatedMenu.CONTACT),
       [authenticatedMenu.ABOUT]: () => navigate(routes.about),
     }),
-    []
+    [navigate]
   );
 
   return (

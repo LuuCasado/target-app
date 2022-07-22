@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
       marginRight: pxToRem(50),
     },
   },
+
   chatsContainer: {
     width: "100%",
     display: "flex",
@@ -29,10 +30,11 @@ const useStyles = createUseStyles({
     },
 
     "& > hr": {
-      width: "90%",
+      width: "95%",
       color: hexToRGBA(colors.black, 0.5),
     },
   },
+
   messagesContainer: {
     display: "flex",
     width: "100%",
@@ -42,17 +44,25 @@ const useStyles = createUseStyles({
       textAlign: "left",
     },
   },
+
   userAvatar: {
     height: pxToRem(30),
     marginLeft: pxToRem(30),
-    marginRight: pxToRem(15),
+    marginRight: pxToRem(27),
     borderRadius: "100%",
   },
+
+  defaultAvatar: {
+    height: pxToRem(30),
+    marginLeft: "5px",
+  },
+
   topic: {
     height: pxToRem(17),
     marginLeft: pxToRem(15),
     marginRight: pxToRem(30),
   },
+
   userName: {
     fontSize: pxToRem(12),
     fontWeight: "bold",

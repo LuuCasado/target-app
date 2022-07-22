@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as TargetIcon } from "assets/icons/target.svg";
+import { buildQueryUrl } from "utils/helpers";
+import routes from "constants/routes";
 import CreateTargetForm from "components/auth/CreateTargetForm";
 import LeftContainer from "components/global/LeftContainer";
 import RightContainer from "components/global/RightContainer";
@@ -10,15 +13,25 @@ import useStyles from "./styles";
 
 const CreateTarget = () => {
   const classes = useStyles();
-  const { handleCreate, topics, errors, targets } = useTargets();
-  const [mapLongitude, setLongitude] = useState();
-  const [mapLatitude, setLatitude] = useState();
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const startingLatitude = Number(searchParams.get("lat"));
+  const startingLongitude = Number(searchParams.get("lng"));
+
+  const { handleCreate, topics, errors, targets, startEditingTarget } =
+    useTargets();
+  const [mapLongitude, setLongitude] = useState(startingLongitude);
+  const [mapLatitude, setLatitude] = useState(startingLatitude);
   const onCoordChange = useCallback(
     ({ lat, lng }) => {
       setLatitude(lat);
       setLongitude(lng);
+
+      const url = buildQueryUrl(routes.createTarget, { lat, lng });
+      navigate(url, { replace: true });
     },
-    [setLatitude, setLongitude]
+    [setLatitude, setLongitude, navigate]
   );
 
   return (
@@ -35,7 +48,13 @@ const CreateTarget = () => {
         />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
-        <Map onCoordChange={onCoordChange} targets={targets} topics={topics} />
+        <Map
+          onCoordChange={onCoordChange}
+          targets={targets}
+          topics={topics}
+          startEditingTarget={startEditingTarget}
+          initialPreviewMarker={{ mapLatitude, mapLongitude }}
+        />
       </RightContainer>
     </div>
   );

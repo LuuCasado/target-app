@@ -65,6 +65,7 @@ const useTargets = () => {
         });
 
         dispatch(createSuccessful(target));
+        navigate(routes.home);
       } catch ({
         response: {
           data: {
@@ -75,7 +76,7 @@ const useTargets = () => {
         setErrors(user || targets_limit);
       }
     },
-    [dispatch, setErrors, topics]
+    [dispatch, setErrors, navigate, topics]
   );
 
   const handleDelete = useCallback(

@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { buttonStyles } from "constants/styleTypes";
+import { buildQueryUrl } from "utils/helpers";
 import routes from "constants/routes";
 import Avatar from "components/global/Avatar";
 import FirstTarget from "components/home/FirstTarget";
@@ -22,7 +23,7 @@ const Home = () => {
   const { handleLogout, user } = useSession();
   const { topics, targets, startEditingTarget } = useTargets();
   const [showWelcome, setShowWelcome] = useState(true);
-  useConversations();
+  const { conversations } = useConversations();
 
   const getLeftColumnContent = useCallback(() => {
     if (!targets.length) {
@@ -35,11 +36,8 @@ const Home = () => {
         </div>
       );
     }
-  }, []);
-
-  return (
-    <div className={classes.container}>
-      <LeftContainer hideFooter className={classes.leftContainer}>
+    return (
+      <>
         <Avatar user={user} />
         <div>
           <Button
@@ -55,13 +53,35 @@ const Home = () => {
           </Button>
         </div>
         <hr className={classes.divider} />
-        <Chats topics={topics} />
+        <Chats conversations={conversations} />
+      </>
+    );
+  }, [
+    navigate,
+    handleLogout,
+    setShowWelcome,
+    showWelcome,
+    classes,
+    conversations,
+    user,
+    topics,
+    targets,
+  ]);
+
+  return (
+    <div className={classes.container}>
+      <LeftContainer hideFooter className={classes.leftContainer}>
+        {getLeftColumnContent()}
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <Map
           targets={targets}
           topics={topics}
           startEditingTarget={startEditingTarget}
+          onCoordChange={({ lat, lng }) => {
+            const url = buildQueryUrl(routes.createTarget, { lat, lng });
+            navigate(url);
+          }}
         />
       </RightContainer>
     </div>

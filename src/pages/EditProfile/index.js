@@ -14,7 +14,7 @@ const EditProfile = () => {
   const classes = useStyles();
   const { data: { email } = {} } = useSelector((state) => state.auth.user);
   const { errors, user, handleUpdateInfo, handleChangePassword } = useSession();
-  const { topics, targets } = useTargets();
+  const { topics, targets, startEditingTarget } = useTargets();
 
   if (!user) return null;
 
@@ -30,7 +30,11 @@ const EditProfile = () => {
         />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
-        <Map targets={targets} topics={topics} />
+        <Map
+          targets={targets}
+          topics={topics}
+          startEditingTarget={startEditingTarget}
+        />
       </RightContainer>
     </div>
   );
