@@ -35,6 +35,7 @@ const Map = ({
   onCoordChange,
   startEditingTarget,
   editingTargetId,
+  initialPreviewMarker,
   targets = [],
   topics = [],
 }) => {
@@ -44,6 +45,7 @@ const Map = ({
   const [mapLatitude, setLatitude] = useState(startingLatitude);
   const [map, setMap] = useState({});
   const [previewMarker, setPreviewMarker] = useState();
+  const [startingPreviewMarker, setStartingPreviewMarker] = useState();
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
@@ -61,13 +63,17 @@ const Map = ({
       map,
     });
 
-    setMap(map);
+    initialPreviewMarker &&
+      setStartingPreviewMarker(
+        createMarker({
+          lng: initialPreviewMarker.mapLongitude,
+          lat: initialPreviewMarker.mapLatitude,
+          className: classes.previewMarker,
+          map,
+        })
+      );
 
-    onCoordChange &&
-      onCoordChange({
-        lat: startingLatitude,
-        lng: startingLongitude,
-      });
+    setMap(map);
 
     navigator.geolocation?.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -80,13 +86,11 @@ const Map = ({
         });
         setLatitude(latitude);
         setLongitude(longitude);
-        onCoordChange && onCoordChange({ lat: latitude, lng: longitude });
       }
     );
 
     return () => {
       if (currentMarker) currentMarker.remove();
-      if (previewMarker) previewMarker.remove();
       markers.forEach((marker) => marker.remove());
       map.remove();
     };
@@ -97,8 +101,6 @@ const Map = ({
 
     const clickListener = ({ lngLat }) => {
       onCoordChange && onCoordChange(lngLat);
-
-      previewMarker && previewMarker.remove();
 
       setPreviewMarker(
         createMarker({
@@ -112,8 +114,19 @@ const Map = ({
 
     map.on("click", clickListener);
 
-    return () => map.off("click", clickListener);
-  }, [map, previewMarker]);
+    return () => {
+      map.off("click", clickListener);
+      if (previewMarker) previewMarker.remove();
+      if (startingPreviewMarker) startingPreviewMarker.remove();
+    };
+  }, [
+    map,
+    classes,
+    previewMarker,
+    startingPreviewMarker,
+    onCoordChange,
+    setPreviewMarker,
+  ]);
 
   useEffect(() => {
     if (map.setCenter) {
@@ -152,14 +165,15 @@ const Map = ({
 
       setMarkers([...markers, marker]);
     });
-  }, [targets, topics, map]);
-
-  useEffect(() => {
-    if (previewMarker) {
-      previewMarker.remove();
-      setPreviewMarker();
-    }
-  }, [targets]);
+  }, [
+    classes,
+    map,
+    targets,
+    topics,
+    editingTargetId,
+    startEditingTarget,
+    setMarkers,
+  ]);
 
   return <div ref={mapElement} className={classes.map} />;
 };
