@@ -50,6 +50,7 @@ const useSession = () => {
     },
     [dispatch, navigate, setInterceptor, setErrors]
   );
+
   const handleLogout = useCallback(
     async (ignoreBackendLogout = false) => {
       try {

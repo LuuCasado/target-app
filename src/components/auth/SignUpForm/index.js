@@ -61,6 +61,7 @@ const SignUpForm = ({
 
     handleSignUp(values);
   };
+
   return (
     <div className={cn(classes.containerForm, className)}>
       <div>
