@@ -25,7 +25,6 @@ const useStyles = createUseStyles({
       fontWeight: 500,
     },
   },
-  //😊
   buttons: {
     display: "flex",
     flexDirection: "row",

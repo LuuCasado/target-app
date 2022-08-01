@@ -7,6 +7,5 @@ const routes = {
   editProfile: "/edit-profile",
   about: "/about",
 };
-//👌
 
 export default routes;

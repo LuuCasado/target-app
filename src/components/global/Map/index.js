@@ -113,7 +113,6 @@ const Map = ({
     };
 
     map.on("click", clickListener);
-    //👀
     return () => {
       map.off("click", clickListener);
       if (previewMarker) previewMarker.remove();

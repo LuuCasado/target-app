@@ -8,7 +8,6 @@ import {
   getTargetsSuccessful,
   editTarget,
   deleteTarget,
-  //✨
 } from "store/reducers/targetsSlice";
 import useModal from "./useModal";
 import TargetsService from "services/targetsService";
