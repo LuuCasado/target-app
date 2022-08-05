@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
     color: colors.warmGrey,
   },
   line: {
-    width: "90%",
+    width: "100%",
     color: colors.brightGrey,
   },
 });

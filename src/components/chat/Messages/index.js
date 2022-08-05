@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
 import useStyles from "./styles";
 
 const Messages = ({ messages, userId, handleGetMessages, hasMore }) => {
   const classes = useStyles();
-
+  const [messageLoaded, setMessageLoaded] = useState(false);
   const messagesRef = useRef();
 
   const getHoursWithMinutes = (rawDate) => {
@@ -31,10 +31,14 @@ const Messages = ({ messages, userId, handleGetMessages, hasMore }) => {
       element.scrollHeight === element.clientHeight
     ) {
       handleGetMessages();
-    } else if (element.scrollHeight !== element.clientHeight) {
+    } else if (
+      element.scrollHeight !== element.clientHeight &&
+      !messageLoaded
+    ) {
+      setMessageLoaded(true);
       element.scrollTo(0, element.scrollHeight - element.clientHeight);
     }
-  }, [messages, hasMore, handleGetMessages]);
+  }, [messages, hasMore, handleGetMessages, messageLoaded]);
 
   return (
     <div
