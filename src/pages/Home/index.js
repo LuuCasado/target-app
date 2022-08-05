@@ -22,8 +22,9 @@ const Home = () => {
   const navigate = useNavigate();
   const { handleLogout, user } = useSession();
   const { topics, targets, startEditingTarget } = useTargets();
-  const [showWelcome, setShowWelcome] = useState(true);
   const { conversations } = useConversations();
+  const [showWelcome, setShowWelcome] = useState(true);
+
   const getLeftColumnContent = useCallback(() => {
     if (!targets.length) {
       return showWelcome ? (

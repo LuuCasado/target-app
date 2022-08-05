@@ -28,3 +28,11 @@ export const buildQueryString = (params) =>
 
 export const buildQueryUrl = (url, query) =>
   `${url}?${buildQueryString(query)}`;
+
+export const removeDuplicated = (data) =>
+  data.reduce((unique, obj) => {
+    if (!unique.some(({ id }) => id === obj.id)) {
+      unique.push(obj);
+    }
+    return unique;
+  }, []);
