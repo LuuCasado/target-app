@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as User } from "assets/icons/user.svg";
+import { buildQueryUrl } from "utils/helpers";
+import routes from "constants/routes";
 import useStyles from "./styles";
 
 const Chats = ({ conversations }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return conversations.length ? (
     <div className={classes.chatsContainer}>
@@ -15,13 +19,17 @@ const Chats = ({ conversations }) => {
         ({
           last_message,
           topic_icon,
+          match_id,
           user: {
             full_name,
             avatar: { small_thumb_url },
           },
         }) => (
           <>
-            <div className={classes.messagesContainer}>
+            <div
+              className={classes.messagesContainer}
+              onClick={() => navigate(buildQueryUrl(routes.chat, { match_id }))}
+            >
               {small_thumb_url ? (
                 <img
                   src={small_thumb_url}

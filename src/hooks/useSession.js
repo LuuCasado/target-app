@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { loginSuccessful, logout } from "store/reducers/authSlice";
+import { loginSuccessful, logout, setHeaders } from "store/reducers/authSlice";
 import { localStorageKeys } from "constants/localStorageKeys";
 import ChangeInfoSuccess from "components/modals/ChangeInfoSuccess";
 import AuthService from "services/authService";
@@ -39,6 +39,7 @@ const useSession = () => {
           JSON.stringify({ data, headers })
         );
         dispatch(loginSuccessful(data));
+        dispatch(setHeaders(headers));
         navigate(routes.home);
       } catch ({
         response: {
@@ -86,6 +87,7 @@ const useSession = () => {
           JSON.stringify({ data, headers })
         );
         dispatch(loginSuccessful(data));
+        dispatch(setHeaders(headers));
         navigate(routes.home);
       } catch ({
         response: {
@@ -104,7 +106,7 @@ const useSession = () => {
     async ({ email }) => {
       if (!Object.values(user).length) return;
       try {
-        const { data } = await AuthService.updateUserInfo({
+        await AuthService.updateUserInfo({
           email,
           id: user.id,
         });
@@ -124,7 +126,7 @@ const useSession = () => {
   const handleChangePassword = useCallback(
     async ({ currentPassword, newPassword, confirmNewPassword }) => {
       try {
-        const { data } = await AuthService.changePassword({
+        await AuthService.changePassword({
           currentPassword,
           newPassword,
           confirmNewPassword,
@@ -157,6 +159,7 @@ const useSession = () => {
       setIsLoggedIn(true);
       if (!Object.values(user).length) {
         dispatch(loginSuccessful(data));
+        dispatch(setHeaders(headers));
       }
     } else {
       setIsLoggedIn(false);

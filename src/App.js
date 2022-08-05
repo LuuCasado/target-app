@@ -7,6 +7,7 @@ import Home from "pages/Home";
 import CreateTarget from "pages/CreateTarget";
 import EditTarget from "pages/EditTarget";
 import EditProfile from "pages/EditProfile";
+import Chats from "pages/Chats";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import About from "pages/About";
@@ -45,6 +46,11 @@ const App = () => {
                 exact
                 path={routes.editProfile}
                 element={<PrivateRoute page={<EditProfile />} />}
+              />
+              <Route
+                exact
+                path={routes.chat}
+                element={<PrivateRoute page={<Chats />} />}
               />
               <Route exact path={routes.about} element={<About />} />
               <Route exact path={routes.signIn} element={<SignIn />} />
