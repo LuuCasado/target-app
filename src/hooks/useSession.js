@@ -15,6 +15,7 @@ const useSession = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [interceptor, setInterceptor] = useState();
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { openModal } = useModal();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const useSession = () => {
   const handleLogin = useCallback(
     async (values) => {
       try {
+        setIsLoading(true);
         const {
           data: { data },
           headers,
@@ -47,6 +49,8 @@ const useSession = () => {
         },
       }) {
         setErrors(errors);
+      } finally {
+        setIsLoading(false);
       }
     },
     [dispatch, navigate, setInterceptor, setErrors]
@@ -73,6 +77,7 @@ const useSession = () => {
   const handleSignUp = useCallback(
     async (values) => {
       try {
+        setIsLoading(true);
         const { data, headers } = await AuthService.signUp(values);
 
         const interceptor = axios.interceptors.request.use((config) => {
@@ -97,6 +102,8 @@ const useSession = () => {
         },
       }) {
         setErrors(fullMessages);
+      } finally {
+        setIsLoading(false);
       }
     },
     [dispatch, navigate, setInterceptor, setErrors]
@@ -106,6 +113,7 @@ const useSession = () => {
     async ({ email }) => {
       if (!Object.values(user).length) return;
       try {
+        setIsLoading(true);
         await AuthService.updateUserInfo({
           email,
           id: user.id,
@@ -118,6 +126,8 @@ const useSession = () => {
         },
       }) {
         setErrors(errors.email);
+      } finally {
+        setIsLoading(false);
       }
     },
     [user, openModal, handleLogout, setErrors]
@@ -126,6 +136,7 @@ const useSession = () => {
   const handleChangePassword = useCallback(
     async ({ currentPassword, newPassword, confirmNewPassword }) => {
       try {
+        setIsLoading(true);
         await AuthService.changePassword({
           currentPassword,
           newPassword,
@@ -141,6 +152,8 @@ const useSession = () => {
         },
       }) {
         setErrors(full_messages);
+      } finally {
+        setIsLoading(false);
       }
     },
     [handleLogout, openModal, setErrors]
@@ -179,6 +192,7 @@ const useSession = () => {
     user,
     errors,
     isLoggedIn,
+    isLoading,
     handleLogin,
     handleLogout,
     handleSignUp,

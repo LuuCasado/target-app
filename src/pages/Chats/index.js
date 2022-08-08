@@ -15,6 +15,7 @@ import LeftContainer from "components/global/LeftContainer";
 import RightContainer from "components/global/RightContainer";
 import Messages from "components/chat/Messages";
 import UserConversationInfo from "components/chat/UserConversationInfo";
+import Spinner from "components/global/Spinner";
 import useSession from "hooks/useSession";
 import useConversations from "hooks/useConversations";
 import useTargets from "hooks/useTargets";
@@ -37,6 +38,7 @@ const Chats = () => {
     handleNewMessage,
     conversations,
     hasMoreMessages,
+    isLoading,
   } = useConversations();
 
   const searchParams = new URLSearchParams(search);
@@ -80,6 +82,7 @@ const Chats = () => {
             onReceived={handleNewMessage}
           >
             {matchedUser && <UserConversationInfo user={matchedUser} />}
+            <Spinner className={classes.spinner} isVisible={isLoading} />
             <Messages
               messages={messages}
               userId={id}

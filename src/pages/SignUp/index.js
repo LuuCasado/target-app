@@ -1,22 +1,24 @@
 import React from "react";
 
-import RightContainer from "components/global/RightContainer/index.js";
-import LeftContainer from "components/global/LeftContainer/index.js";
-import SignUpForm from "components/auth/SignUpForm/index.js";
-import SamplePhone from "components/global/SamplePhone/index.js";
-import ExternalLinks from "components/global/ExternalLinks/index.js";
-import useSession from "hooks/useSession.js";
-import useStyles from "./styles.js";
+import RightContainer from "components/global/RightContainer";
+import LeftContainer from "components/global/LeftContainer";
+import SignUpForm from "components/auth/SignUpForm";
+import SamplePhone from "components/global/SamplePhone";
+import ExternalLinks from "components/global/ExternalLinks";
+import Spinner from "components/global/Spinner";
+import useSession from "hooks/useSession";
+import useStyles from "./styles";
 
 const SignUp = () => {
   const classes = useStyles();
-  const { handleSignUp, errors } = useSession();
+  const { handleSignUp, errors, isLoading } = useSession();
 
   return (
     <div className={classes.container}>
       <LeftContainer className={classes.leftContainer}>
         <h1>SIGN UP</h1>
         <SignUpForm handleSignUp={handleSignUp} externalErrors={errors} />
+        <Spinner className={classes.spinner} isVisible={isLoading} />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <SamplePhone />

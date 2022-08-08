@@ -7,8 +7,9 @@ import routes from "constants/routes";
 import CreateTargetForm from "components/auth/CreateTargetForm";
 import LeftContainer from "components/global/LeftContainer";
 import RightContainer from "components/global/RightContainer";
-import useTargets from "hooks/useTargets";
 import Map from "components/global/Map";
+import Spinner from "components/global/Spinner";
+import useTargets from "hooks/useTargets";
 import useStyles from "./styles";
 
 const CreateTarget = () => {
@@ -19,10 +20,17 @@ const CreateTarget = () => {
   const startingLatitude = Number(searchParams.get("lat"));
   const startingLongitude = Number(searchParams.get("lng"));
 
-  const { handleCreate, topics, errors, targets, startEditingTarget } =
-    useTargets();
+  const {
+    topics,
+    errors,
+    targets,
+    isLoading,
+    handleCreate,
+    startEditingTarget,
+  } = useTargets();
   const [mapLongitude, setLongitude] = useState(startingLongitude);
   const [mapLatitude, setLatitude] = useState(startingLatitude);
+
   const onCoordChange = useCallback(
     ({ lat, lng }) => {
       setLatitude(lat);
@@ -46,6 +54,7 @@ const CreateTarget = () => {
             handleCreate({ ...props, mapLongitude, mapLatitude })
           }
         />
+        <Spinner className={classes.spinner} isVisible={isLoading} />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <Map

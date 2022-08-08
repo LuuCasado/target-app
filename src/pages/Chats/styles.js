@@ -23,6 +23,9 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     maxHeight: `calc(100vh - ${pxToRem(headerHeight)})`,
   },
+  spinner: {
+    margin: "auto",
+  },
 });
 
 export default useStyles;
