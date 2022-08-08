@@ -12,7 +12,6 @@ const useConversations = () => {
   const [messagePage, setMessagePage] = useState(0);
   const [hasMoreMessages, setHasMoreMessages] = useState(true);
   const [isFetchingMoreMessages, setIsFetchingMoreMessages] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const conversations = useSelector(
     (state) => state.conversation.conversations
@@ -34,7 +33,6 @@ const useConversations = () => {
       if (isFetchingMoreMessages) return;
       setIsFetchingMoreMessages(true);
       try {
-        setIsLoading(true);
         const newPage = messagePage + 1;
         const {
           data: { messages },
@@ -46,7 +44,6 @@ const useConversations = () => {
         console.log(error);
       } finally {
         setIsFetchingMoreMessages(false);
-        setIsLoading(false);
       }
     },
     [dispatch, messagePage]
@@ -69,7 +66,7 @@ const useConversations = () => {
     handleNewMessage,
     conversations,
     hasMoreMessages,
-    isLoading,
+    isLoading: isFetchingMoreMessages,
   };
 };
 
