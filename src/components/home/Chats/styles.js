@@ -13,8 +13,7 @@ const useStyles = createUseStyles({
     "& > h3": {
       fontSize: pxToRem(18),
       lineHeight: pxToRem(32),
-      marginLeft: pxToRem(50),
-      marginRight: pxToRem(50),
+      margin: `0 ${pxToRem(50)} 0 ${pxToRem(50)} `,
     },
   },
 
@@ -47,20 +46,13 @@ const useStyles = createUseStyles({
 
   userAvatar: {
     height: pxToRem(30),
-    marginLeft: pxToRem(30),
-    marginRight: pxToRem(27),
+    margin: `0 ${pxToRem(27)} 0 ${pxToRem(30)} `,
     borderRadius: "100%",
   },
 
   defaultAvatar: {
     height: pxToRem(30),
     marginLeft: "5px",
-  },
-
-  topic: {
-    height: pxToRem(17),
-    marginLeft: pxToRem(15),
-    marginRight: pxToRem(30),
   },
 
   userName: {
@@ -72,6 +64,29 @@ const useStyles = createUseStyles({
   lastMessage: {
     fontSize: pxToRem(11),
     margin: 0,
+  },
+
+  topicContainer: {
+    display: "flex",
+    justifyContent: "right",
+    marginRight: pxToRem(50),
+    position: "relative",
+
+    "& > img": {
+      height: pxToRem(20),
+      margin: `0 ${pxToRem(15)} 0 ${pxToRem(15)} `,
+    },
+    "& > span": {
+      position: "absolute",
+      bottom: pxToRem(15),
+      textAlign: "center",
+      backgroundColor: colors.warmYellow,
+      borderRadius: "100%",
+      color: colors.white,
+      fontSize: pxToRem(10),
+      width: pxToRem(16),
+      height: pxToRem(16),
+    },
   },
 });
 

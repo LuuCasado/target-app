@@ -20,6 +20,7 @@ const Chats = ({ conversations }) => {
           last_message,
           topic_icon,
           match_id,
+          unread_messages,
           user: {
             full_name,
             avatar: { small_thumb_url },
@@ -49,11 +50,10 @@ const Chats = ({ conversations }) => {
                   </p>
                 )}
               </div>
-              <img
-                src={topic_icon}
-                className={classes.topic}
-                alt="topic icon"
-              />
+              <div className={classes.topicContainer}>
+                <img src={topic_icon} alt="topic icon" />
+                {!!unread_messages && <span>{unread_messages}</span>}
+              </div>
             </div>
             <hr />
           </>
