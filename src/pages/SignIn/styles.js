@@ -42,6 +42,9 @@ const useStyles = createUseStyles({
   form: {
     width: "33%",
   },
+  spinner: {
+    margin: "auto",
+  },
 });
 
 export default useStyles;

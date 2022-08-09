@@ -1,17 +1,18 @@
 import React from "react";
 
-import RightContainer from "components/global/RightContainer/index.js";
-import LeftContainer from "components/global/LeftContainer/index.js";
-import SignInForm from "components/auth/SignInForm/index.js";
-import SamplePhone from "components/global/SamplePhone/index.js";
-import ExternalLinks from "components/global/ExternalLinks/index.js";
-import useSession from "hooks/useSession.js";
+import RightContainer from "components/global/RightContainer";
+import LeftContainer from "components/global/LeftContainer";
+import SignInForm from "components/auth/SignInForm";
+import SamplePhone from "components/global/SamplePhone";
+import ExternalLinks from "components/global/ExternalLinks";
+import Spinner from "components/global/Spinner";
+import useSession from "hooks/useSession";
 import smilies from "assets/icons/smilies.svg";
-import useStyles from "./styles.js";
+import useStyles from "./styles";
 
 const SignIn = () => {
   const classes = useStyles();
-  const { handleLogin, errors } = useSession();
+  const { handleLogin, errors, isLoading } = useSession();
 
   return (
     <div className={classes.container}>
@@ -29,6 +30,7 @@ const SignIn = () => {
           handleLogin={handleLogin}
           externalErrors={errors}
         />
+        <Spinner className={classes.spinner} isVisible={isLoading} />
       </LeftContainer>
       <RightContainer className={classes.rightContainer}>
         <SamplePhone />

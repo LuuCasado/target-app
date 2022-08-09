@@ -16,11 +16,12 @@ import routes from "constants/routes";
 const useTargets = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { closeModal } = useModal();
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const topics = useSelector((state) => state.targets.topics);
   const targets = useSelector((state) => state.targets.targets);
   const editingTargetId = useSelector((state) => state.targets.editingTargetId);
-  const { closeModal } = useModal();
 
   const getTopics = useCallback(async () => {
     try {
@@ -57,6 +58,7 @@ const useTargets = () => {
   const handleCreate = useCallback(
     async ({ topic, ...rest }) => {
       try {
+        setIsLoading(true);
         const {
           data: { target },
         } = await TargetsService.createTarget({
@@ -74,6 +76,8 @@ const useTargets = () => {
         },
       }) {
         setErrors(user || targets_limit);
+      } finally {
+        setIsLoading(false);
       }
     },
     [dispatch, setErrors, navigate, topics]
@@ -117,6 +121,7 @@ const useTargets = () => {
     topics,
     targets,
     errors,
+    isLoading,
   };
 };
 

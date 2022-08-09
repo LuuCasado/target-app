@@ -66,6 +66,7 @@ const useConversations = () => {
     handleNewMessage,
     conversations,
     hasMoreMessages,
+    isLoading: isFetchingMoreMessages,
   };
 };
 

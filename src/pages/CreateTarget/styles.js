@@ -32,6 +32,9 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     alignItems: "center",
   },
+  spinner: {
+    margin: "auto",
+  },
 });
 
 export default useStyles;

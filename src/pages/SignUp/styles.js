@@ -30,6 +30,9 @@ const useStyles = createUseStyles({
     backgroundColor: colors.lightblue,
     paddingTop: pxToRem(50),
   },
+  spinner: {
+    margin: "auto",
+  },
 });
 
 export default useStyles;
