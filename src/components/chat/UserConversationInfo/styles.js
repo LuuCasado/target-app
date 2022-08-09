@@ -6,6 +6,9 @@ import { colors } from "constants/colors";
 const useStyles = createUseStyles({
   container: {
     position: "relative",
+    borderBottom: `1px ${colors.brightGrey} solid`,
+    paddingTop: pxToRem(12),
+    paddingBottom: pxToRem(12),
     "& > p": {
       margin: 0,
       textAlign: "center",
@@ -31,10 +34,6 @@ const useStyles = createUseStyles({
     fontSize: pxToRem(11),
     lineHeight: pxToRem(13),
     color: colors.warmGrey,
-  },
-  line: {
-    width: "100%",
-    color: colors.brightGrey,
   },
 });
 

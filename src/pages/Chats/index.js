@@ -71,7 +71,7 @@ const Chats = () => {
 
   return (
     <div className={classes.container}>
-      <LeftContainer className={classes.leftContainer}>
+      <LeftContainer className={classes.leftContainer} inRouteHeader>
         <ActionCableProvider cable={cable}>
           <ActionCableConsumer
             channel={{

@@ -20,7 +20,7 @@ const EditProfile = () => {
 
   return (
     <div className={classes.container}>
-      <LeftContainer className={classes.leftContainer}>
+      <LeftContainer className={classes.leftContainer} inRouteHeader>
         <Avatar user={user} />
         <EditProfileForm
           externalErrors={errors}
