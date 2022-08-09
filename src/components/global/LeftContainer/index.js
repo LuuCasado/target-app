@@ -6,7 +6,7 @@ import SiderMenu from "components/global/SiderMenu";
 import useSession from "hooks/useSession";
 import useStyles from "./styles";
 
-const LeftContainer = ({ children, className, hideFooter }) => {
+const LeftContainer = ({ children, className, hideFooter, inRouteHeader }) => {
   const classes = useStyles();
   const { isLoggedIn } = useSession();
   const [isSiderOpen, setIsSiderOpen] = useState(false);
@@ -21,6 +21,7 @@ const LeftContainer = ({ children, className, hideFooter }) => {
       <Header
         isSiderOpen={isSiderOpen}
         toggleSider={() => setIsSiderOpen(!isSiderOpen)}
+        inRouteHeader={inRouteHeader}
       />
       {isSiderOpen ? (
         <SiderMenu isLoggedIn={isLoggedIn} />

@@ -1,5 +1,7 @@
 import { createUseStyles } from "react-jss";
 
+import { pxToRem } from "utils/helpers";
+
 const useStyles = createUseStyles({
   container: {
     display: "flex",
@@ -20,6 +22,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    paddingTop: pxToRem(20),
   },
   spinner: {
     margin: "auto",

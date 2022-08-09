@@ -44,7 +44,7 @@ const CreateTarget = () => {
 
   return (
     <div className={classes.container}>
-      <LeftContainer className={classes.leftContainer}>
+      <LeftContainer className={classes.leftContainer} inRouteHeader>
         <TargetIcon />
         <h3 className={classes.title}>CREATE A NEW TARGET</h3>
         <CreateTargetForm

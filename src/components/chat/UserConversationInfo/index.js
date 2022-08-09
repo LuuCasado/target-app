@@ -11,14 +11,11 @@ const UserConversationInfo = ({
   const classes = useStyles();
 
   return (
-    <>
-      <div className={classes.container}>
-        <img src={topic_icon} className={classes.topic} alt="topic icon" />
-        <p className={classes.userName}>{full_name}</p>
-        <p className={classes.title}>Target title</p>
-      </div>
-      <hr className={classes.line} />
-    </>
+    <div className={classes.container}>
+      <img src={topic_icon} className={classes.topic} alt="topic icon" />
+      <p className={classes.userName}>{full_name}</p>
+      <p className={classes.title}>Target title</p>
+    </div>
   );
 };
 
