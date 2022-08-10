@@ -5,6 +5,10 @@ import axios from "axios";
 
 import { loginSuccessful, logout, setHeaders } from "store/reducers/authSlice";
 import { localStorageKeys } from "constants/localStorageKeys";
+import {
+  handleRequestInterceptor,
+  handleResponseInterceptor,
+} from "services/interceptors";
 import ChangeInfoSuccess from "components/modals/ChangeInfoSuccess";
 import AuthService from "services/authService";
 import routes from "constants/routes";
@@ -13,12 +17,32 @@ import useModal from "./useModal";
 const useSession = () => {
   const user = useSelector((state) => state.auth.user);
   const [isLoggedIn, setIsLoggedIn] = useState();
-  const [interceptor, setInterceptor] = useState();
+  const [requestInterceptor, setRequestInterceptor] = useState();
+  const [responseInterceptor, setResponseInterceptor] = useState();
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { openModal } = useModal();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleLogout = useCallback(
+    async (ignoreBackendLogout = false) => {
+      try {
+        if (!ignoreBackendLogout) {
+          await AuthService.logOut(user);
+        }
+
+        axios.interceptors.request.eject(requestInterceptor);
+        axios.interceptors.response.eject(responseInterceptor);
+
+        localStorage.removeItem(localStorageKeys.auth);
+        dispatch(logout());
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [dispatch, requestInterceptor, responseInterceptor, user]
+  );
 
   const handleLogin = useCallback(
     async (values) => {
@@ -29,12 +53,13 @@ const useSession = () => {
           headers,
         } = await AuthService.logIn(values);
 
-        const interceptor = axios.interceptors.request.use((config) => {
-          config.headers = { ...config.headers, ...headers };
-          return config;
-        });
+        const requestInterceptor = handleRequestInterceptor(headers);
+        const responseInterceptor = handleResponseInterceptor(() =>
+          handleLogout(true)
+        );
 
-        setInterceptor(interceptor);
+        setRequestInterceptor(requestInterceptor);
+        setResponseInterceptor(responseInterceptor);
 
         localStorage.setItem(
           localStorageKeys.auth,
@@ -53,25 +78,7 @@ const useSession = () => {
         setIsLoading(false);
       }
     },
-    [dispatch, navigate, setInterceptor, setErrors]
-  );
-
-  const handleLogout = useCallback(
-    async (ignoreBackendLogout = false) => {
-      try {
-        if (!ignoreBackendLogout) {
-          await AuthService.logOut(user);
-        }
-
-        axios.interceptors.request.eject(interceptor);
-
-        localStorage.removeItem(localStorageKeys.auth);
-        dispatch(logout());
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [dispatch, interceptor, user]
+    [dispatch, navigate, setRequestInterceptor, setErrors, handleLogout]
   );
 
   const handleSignUp = useCallback(
@@ -80,12 +87,13 @@ const useSession = () => {
         setIsLoading(true);
         const { data, headers } = await AuthService.signUp(values);
 
-        const interceptor = axios.interceptors.request.use((config) => {
-          config.headers = { ...config.headers, ...headers };
-          return config;
-        });
+        const requestInterceptor = handleRequestInterceptor(headers);
+        const responseInterceptor = handleResponseInterceptor(() =>
+          handleLogout(true)
+        );
 
-        setInterceptor(interceptor);
+        setRequestInterceptor(requestInterceptor);
+        setResponseInterceptor(responseInterceptor);
 
         localStorage.setItem(
           localStorageKeys.auth,
@@ -106,7 +114,7 @@ const useSession = () => {
         setIsLoading(false);
       }
     },
-    [dispatch, navigate, setInterceptor, setErrors]
+    [dispatch, navigate, setRequestInterceptor, setErrors, handleLogout]
   );
 
   const handleUpdateInfo = useCallback(
@@ -161,14 +169,17 @@ const useSession = () => {
 
   useEffect(() => {
     const authRawData = localStorage.getItem(localStorageKeys.auth);
-    let interceptor;
+    let requestInterceptor;
+    let responseInterceptor;
     if (authRawData) {
       const { data, headers } = JSON.parse(authRawData);
-      interceptor = axios.interceptors.request.use((config) => {
-        config.headers = { ...config.headers, ...headers };
-        return config;
-      });
-      setInterceptor(interceptor);
+
+      requestInterceptor = handleRequestInterceptor(headers);
+      responseInterceptor = handleRequestInterceptor(() => handleLogout(true));
+
+      setRequestInterceptor(requestInterceptor);
+      setResponseInterceptor(responseInterceptor);
+
       setIsLoggedIn(true);
       if (!Object.values(user).length) {
         dispatch(loginSuccessful(data));
@@ -178,11 +189,12 @@ const useSession = () => {
       setIsLoggedIn(false);
     }
     return () => {
-      if (interceptor) {
-        axios.interceptors.request.eject(interceptor);
+      if (requestInterceptor) {
+        axios.interceptors.request.eject(requestInterceptor);
+        axios.interceptors.response.eject(responseInterceptor);
       }
     };
-  }, [user, dispatch]);
+  }, [user, dispatch, handleLogout]);
 
   useEffect(() => {
     window.dispatchEvent(new Event("resize"));
