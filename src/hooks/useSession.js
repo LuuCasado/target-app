@@ -118,7 +118,7 @@ const useSession = () => {
           email,
           id: user.id,
         });
-        handleLogout(true);
+        //handleLogout(true);
         openModal(<ChangeInfoSuccess />);
       } catch ({
         response: {
@@ -142,7 +142,7 @@ const useSession = () => {
           newPassword,
           confirmNewPassword,
         });
-        handleLogout(true);
+        // handleLogout(true);
         openModal(<ChangeInfoSuccess />);
       } catch ({
         response: {
@@ -169,6 +169,16 @@ const useSession = () => {
         return config;
       });
       setInterceptor(interceptor);
+      const interceptorResponse = axios.interceptors.response.use(
+        (response) => response,
+        (error) => {
+          if (error.response.status === 401) {
+            handleLogout(true);
+          }
+          return Promise.reject(error);
+        }
+      );
+
       setIsLoggedIn(true);
       if (!Object.values(user).length) {
         dispatch(loginSuccessful(data));
