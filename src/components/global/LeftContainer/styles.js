@@ -16,6 +16,9 @@ const useStyles = createUseStyles({
     authenticated: {
       width: "100%",
     },
+    common: {
+      width: "100%",
+    },
     hidden: {
       display: "none !important",
     },
