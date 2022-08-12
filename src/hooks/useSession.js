@@ -191,10 +191,12 @@ const useSession = () => {
     return () => {
       if (requestInterceptor) {
         axios.interceptors.request.eject(requestInterceptor);
+      }
+      if (responseInterceptor) {
         axios.interceptors.response.eject(responseInterceptor);
       }
     };
-  }, [user, dispatch, handleLogout]);
+  }, [user, dispatch]);
 
   useEffect(() => {
     window.dispatchEvent(new Event("resize"));

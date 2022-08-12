@@ -26,7 +26,7 @@ const About = () => {
   if (isLoggedIn) {
     return (
       <div className={classes.container}>
-        <LeftContainer className={classes.leftContainer}>
+        <LeftContainer className={classes.leftContainer} inRouteHeader>
           <p>{aboutText}</p>
         </LeftContainer>
         <RightContainer className={classes.rightContainer}>

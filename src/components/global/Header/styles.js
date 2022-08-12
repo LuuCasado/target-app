@@ -3,6 +3,7 @@ import { createUseStyles } from "react-jss";
 import { headerHeight } from "constants/styles";
 import { colors } from "constants/colors";
 import { pxToRem } from "utils/helpers";
+import { breakpoints } from "constants/styles";
 
 const useStyles = createUseStyles({
   header: {
@@ -34,6 +35,24 @@ const useStyles = createUseStyles({
     position: "absolute",
     left: pxToRem(20),
     cursor: "pointer",
+  },
+  locationIcon: {
+    display: "none",
+  },
+  blackIcon: {},
+
+  [`@media screen and (max-width: ${breakpoints.xl}px)`]: {
+    locationIcon: {
+      display: "block",
+      position: "absolute",
+      right: pxToRem(20),
+      cursor: "pointer",
+      fill: colors.white,
+    },
+    blackIcon: {
+      fill: colors.black,
+      top: pxToRem(20),
+    },
   },
 });
 
