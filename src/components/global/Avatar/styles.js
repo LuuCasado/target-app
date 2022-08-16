@@ -7,6 +7,7 @@ const useStyles = createUseStyles({
   user: {
     backgroundColor: colors.lightblue,
     borderRadius: "100%",
+    padding: pxToRem(20),
   },
   userName: {
     margin: pxToRem(15),

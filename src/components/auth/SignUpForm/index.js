@@ -9,12 +9,13 @@ import {
   validateConfirmPassword,
 } from "utils/validations";
 import { hasErrors } from "utils/helpers";
-import { genders } from "constants/constants";
 import routes from "constants/routes";
 import Input from "components/global/Input";
 import Button from "components/global/Button";
 import DropdownMenu from "components/global/DropdownMenu";
 import useStyles from "./styles";
+
+const genders = ["FEMALE", "MALE", "OTHER"];
 
 const SignUpForm = ({
   className,

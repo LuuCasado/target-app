@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 
 import { pxToRem } from "utils/helpers";
 import { colors } from "constants/colors";
+import { breakpoints } from "constants/styles";
 
 const useStyles = createUseStyles({
   container: {
@@ -32,6 +33,12 @@ const useStyles = createUseStyles({
   },
   spinner: {
     margin: "auto",
+  },
+
+  [`@media screen and (max-width: ${breakpoints.xl}px)`]: {
+    leftContainer: {
+      padding: 0,
+    },
   },
 });
 

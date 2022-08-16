@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { buttonStyles } from "constants/styleTypes";
-import { authenticatedMenu, unauthenticatedMenu } from "constants/constants";
+import { authenticatedMenu, unauthenticatedMenu } from "constants/routes";
 import routes from "constants/routes";
 import Button from "components/global/Button";
 import useStyles from "./styles";
