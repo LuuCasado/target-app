@@ -67,7 +67,6 @@ const Home = () => {
     topics,
     targets,
   ]);
-
   return (
     <div className={classes.container}>
       <LeftContainer hideFooter className={classes.leftContainer}>
