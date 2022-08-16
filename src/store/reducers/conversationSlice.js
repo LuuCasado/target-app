@@ -14,6 +14,7 @@ export const conversationSlice = createSlice({
   extraReducers: (builder) =>
     builder.addCase(logout, (state) => {
       state.conversations = initialState.conversations;
+      state.messages = initialState.messages;
     }),
   reducers: {
     getConversationSuccessful: (state, { payload }) => {
